@@ -2,7 +2,6 @@ import React from 'react'
 import CardsBooks from '@/components/CardsBooks/CardsBooks'
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { books } from '../db/data';
 
 type Book = {
   id: number;
