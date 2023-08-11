@@ -3,7 +3,7 @@ import React from 'react'
 function card() {
   return (
     <div>
-      <h1>Card2356</h1>
+      <h1>Nueva titulo Card</h1>
     </div>
   )
 }
