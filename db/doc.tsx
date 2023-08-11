@@ -1,6 +1,6 @@
 import React from 'react'
 
-function prueba() {
+function doc() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function prueba() {
   )
 }
 
-export default prueba
+export default doc
