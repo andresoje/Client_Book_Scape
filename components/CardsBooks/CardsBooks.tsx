@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import CardBook from "../CardBook/CardBook";
 import styles from "./CardsBooks.module.css";
 
@@ -8,33 +6,15 @@ type Book = {
   title: string;
   authors: string;
   price: number;
-  description: string;
-  rating: number;
-  image: string;
-  flag: string;
-  currency: string;
-  ratingCount: number;
   genre: string[];
-  language: string;
-  stock: number;
+  image: string;
 };
 
-const CardsBooks = () => {
-  const [books, setBooks] = useState<Book[]>([]);
+type CardsBooksProps = {
+  books: Book[];
+};
 
-  useEffect(() => {
-    fetchBooks();
-  }, []);
-
-  const fetchBooks = async () => {
-    try {
-      const response = await axios.get("/api/books"); // Asegúrate de que la ruta sea correcta
-      setBooks(response.data);
-    } catch (error) {
-      console.error("Error fetching books:", error);
-    }
-  };
-
+const CardsBooks: React.FC<CardsBooksProps> = ({ books }) => {
   return (
     <div className={styles.container}>
       {books.map(({ title, authors, price, genre, image, id }, index) => (
