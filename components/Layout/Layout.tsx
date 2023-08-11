@@ -4,7 +4,7 @@ import React from 'react';
 import { Container } from 'semantic-ui-react';
 
 import Footer from '../Footer/Footer';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '@components/Navbar/Navbar';
 
 // Definición de los tipos de propiedades que puede recibir el componente Layout
 type LayoutProps = {
