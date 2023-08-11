@@ -20,7 +20,6 @@ type Book = {
   stock: number;
 };
 
-
 function Home() {
   const [books, setBooks] = useState<Book[]>([]);
 
