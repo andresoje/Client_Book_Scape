@@ -1,0 +1,55 @@
+.liner{
+    background: linear-gradient(180deg, #eeeeee 26.71%, #b1b1b1 99.36%);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+
+}
+
+.contanier{
+background-color: black;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+    width: 70%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color: aliceblue;
+    height: 100px;
+    border-radius: 0px 0px 15px 15px;
+    margin-bottom: 10px;
+}
+.logo img {
+    width: 180px;
+    cursor: pointer;
+    margin-top: 0px;
+    margin: 10px;
+
+}
+.logo{
+   width: 20%;
+   display: flex;
+   justify-content: center;
+
+
+}
+
+.SearchBar{
+    background-color: rgb(0, 0, 0);
+    font-size: 12px;
+    width: 40%;
+    display: flex;
+    align-items: center;
+}
+
+.Text{
+    background-color: rgb(0, 0, 0);
+}
+
+.Iconos{
+    background-color: rgb(0, 0, 0);
+
+}
