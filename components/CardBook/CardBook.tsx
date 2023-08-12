@@ -35,8 +35,10 @@ const CardBook: React.FC<CardBookProps> = ({
           <p className={styles.cardPrice}>Price: ${price}</p>
         </div>
     </Link>
+
           <Rating ratingCount={ratingCount} />
           <p className={styles.button}><Link href={"/carrito-de-compra"}><IoIosCart /></Link></p>
+
     </div>
   );
 };
