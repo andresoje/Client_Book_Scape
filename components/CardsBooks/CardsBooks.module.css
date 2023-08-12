@@ -4,9 +4,9 @@
   gap: 10px;
   padding: 10px;
   justify-content: center;
-  margin: 0 auto;
-  grid-gap: 10px;
-  margin-left: 3%;
+  grid-gap: 0.3%;
+  margin-right: 0px;
+
 }
 
 @media screen and (min-width: 800px) {
@@ -17,7 +17,7 @@
 @media screen and (min-width: 1200px) {
   .container {
     grid-template-columns: repeat(4, 1fr);
-    grid: 10px;
+    grid: 0.5%;
 
 
   }

@@ -36,11 +36,22 @@ function Home() {
     }
   };
   return (
-    <div className={styles.main}>
-      <h1>Home</h1>
+    <div className={styles.description}>
+      {/* //columna izquierda */}
+    <div className={styles.descriptionIzq}> 
+    <h3>Consulta por categorias</h3>
+    <p>Poseia</p>
+    <p>Poseia</p>
+    <p>Poseia</p>
+    <p>Poseia</p>
+    
+    </div>
+    {/* //columna derecha */}
+    <div className={styles.descriptionDer}>
+      <h3 className={styles.h1}>Bienvenidos</h3>
       <CardsBooks books={books}/>
     </div>
-  )
-}
+  </div>
+)}
 
 export default Home
