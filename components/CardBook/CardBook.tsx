@@ -24,7 +24,7 @@ const CardBook: React.FC<CardBookProps> = ({
 }) => {
   return (
     <div>
-    <Link key={id} href={`/book/${id}`} className={styles.card}>
+    <Link key={id} href={`/detalle/${id}`} className={styles.card}>
         <div className={styles.imageContainer}>
           <img src={image} alt={title} className={styles.image} />
         </div>
