@@ -24,14 +24,12 @@
 
 }
  .button{
+  margin-top: 20px;
   text-decoration: none;
   background: linear-gradient(180deg, #f6f5f5 26.71%, #929292 99.36%);
   width: 50%;
   color: aliceblue;
   margin-left: 25%;
-
-  
-
  }
 
 .image {
