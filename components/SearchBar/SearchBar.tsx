@@ -5,16 +5,15 @@ import styles from './SearchBar.module.css'
 function SearchBar( ) {
    
   return (
-    <div className={styles.wrapperSearch}>
+    <form className={styles.wrapperSearch}>
       <input
         className={styles.input}
         type="search"
-
       />
       <button className={styles.btn}  >
         Search
       </button>
-    </div>
+    </form>
   )
 }
 
