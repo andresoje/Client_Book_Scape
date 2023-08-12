@@ -1,0 +1,53 @@
+.footer{
+    background: linear-gradient(180deg, #eeeded 26.71%, #1f1f1f 99.36%);
+    width: 100%;
+}
+.container {
+    margin-top: 50px;
+    height: 30px;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    flex-shrink: 0;
+}
+
+.logo 
+img{
+width: 200px;
+}
+
+.SearchBar {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+
+}
+
+.redes{
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+
+}
+
+
+.links{
+    width: 20%;
+    margin-top: 50px;
+    color: #222222;
+    font-weight: 500;
+    line-height: 24px; /* 133.333% */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+
+}
+
+.developer{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    padding: 20px;
+
+}
