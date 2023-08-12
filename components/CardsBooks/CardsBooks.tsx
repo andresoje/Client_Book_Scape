@@ -1,3 +1,4 @@
+import { Rating } from "semantic-ui-react";
 import CardBook from "../CardBook/CardBook";
 import styles from "./CardsBooks.module.css";
 
@@ -8,6 +9,7 @@ type Book = {
   price: number;
   genre: string[];
   image: string;
+  ratingCount: number;
 };
 
 type CardsBooksProps = {
@@ -17,7 +19,7 @@ type CardsBooksProps = {
 const CardsBooks: React.FC<CardsBooksProps> = ({ books }) => {
   return (
     <div className={styles.container}>
-      {books.map(({ title, authors, price, genre, image, id }, index) => (
+      {books.map(({ title, authors, price, genre, image, id, ratingCount }, index) => (
         <CardBook
           key={id}
           id={id}
@@ -26,6 +28,7 @@ const CardsBooks: React.FC<CardsBooksProps> = ({ books }) => {
           price={price}
           genre={genre}
           image={image}
+          ratingCount={ratingCount}
         />
       ))}
     </div>
