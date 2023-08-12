@@ -23,7 +23,7 @@ const Navbar = () => {
       <div className={styles.contanier}>
       <div className={styles.SearchBar} >Que quieres leer Hoy?<SearchBar /> </div>
       <div className={styles.Text}><IoLogoWhatsapp/>  Registro o Inicio </div>
-      <div className={styles.Iconos}><IoIosCart /><IoMdPerson /></div>
+      <div className={styles.Iconos}><Link href={"/car"}><IoIosCart /></Link> <Link href="/login"><IoMdPerson /></Link>  </div>
   
     </div>
     </div>
