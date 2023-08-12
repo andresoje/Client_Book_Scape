@@ -1,9 +1,10 @@
 // _app.tsx es un componente especial que se utiliza para personalizar y envolver la aplicación con componentes o lógica global antes de que se rendericen las páginas individuales. Es un componente de nivel superior que se utiliza para realizar configuraciones generales, manejar estado global, aplicar estilos globales y realizar otras acciones comunes en toda la aplicación.
 
-import { AppProps } from 'next/app';
-import React from 'react';
+import { AppProps } from "next/app";
+import React from "react";
 // import '../styles/globals.css'; // podemos utilizar estilos globales
-import Layout from '@/components/Layout/Layout';
+import Layout from "@/components/Layout/Layout";
+import { BookProvider } from "@/context/BookContext";
 
 /**
  * Componente raíz de la aplicación.
@@ -13,12 +14,13 @@ import Layout from '@/components/Layout/Layout';
  */
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      {/* El componente Layout envuelve cada página */}
-      <Component {...pageProps} />
-    </Layout>
+    <BookProvider>
+      <Layout>
+        {/* El componente Layout envuelve cada página */}
+        <Component {...pageProps} />
+      </Layout>
+    </BookProvider>
   );
 }
 
 export default MyApp;
-
