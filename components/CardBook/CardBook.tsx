@@ -25,7 +25,7 @@ const CardBook: React.FC<CardBookProps> = ({
 }) => {
   return (
     <div>
-      <Link key={id} href={`/book/${id}`} className={styles.card}>
+    <Link key={id} href={`/detalle/${id}`} className={styles.card}>
         <div className={styles.imageContainer}>
           <img src={image} alt={title} className={styles.image} />
         </div>
@@ -33,10 +33,10 @@ const CardBook: React.FC<CardBookProps> = ({
           <h2 className={styles.title}>{title}</h2>
           <h3 className={styles.cardAuthors}>{authors}</h3>
           <p className={styles.cardPrice}>Price: ${price}</p>
-          <p className={styles.button}><Link href={"/car"}><IoIosCart /></Link></p>
-          <Rating ratingCount={ratingCount} />
         </div>
-      </Link>
+    </Link>
+          <Rating ratingCount={ratingCount} />
+          <p className={styles.button}><Link href={"/carrito-de-compra"}><IoIosCart /></Link></p>
     </div>
   );
 };
