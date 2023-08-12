@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./CardBook.module.css";
 import Link from "next/link";
 import { IoIosCart } from "react-icons/io";
+import Rating from "../Rating/Rating";
+import { useBookContext } from "@/context/BookContext";
 
 type CardBookProps = {
   id: number;
@@ -10,17 +12,16 @@ type CardBookProps = {
   price: number;
   genre: string[];
   image: string;
+  ratingCount: number;
 };
 
 const CardBook: React.FC<CardBookProps> = ({
-
-  
   id,
   title,
   authors,
   price,
-  // genre,
   image,
+  ratingCount,
 }) => {
   return (
     <div>
@@ -34,8 +35,10 @@ const CardBook: React.FC<CardBookProps> = ({
           <p className={styles.cardPrice}>Price: ${price}</p>
         </div>
     </Link>
+
+          <Rating ratingCount={ratingCount} />
           <p className={styles.button}><Link href={"/carrito-de-compra"}><IoIosCart /></Link></p>
-    
+
     </div>
   );
 };

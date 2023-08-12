@@ -1,0 +1,12 @@
+.rating {
+  font-size: 24px;
+}
+
+.star {
+  color: #ccc;
+  margin-right: 4px;
+}
+
+.starFilled {
+  color: gold;
+}
