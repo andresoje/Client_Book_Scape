@@ -2,6 +2,7 @@ import React from 'react'
 import CardsBooks from '@/components/CardsBooks/CardsBooks'
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styles from "../styles/Home.module.css"
 
 type Book = {
   id: number;
@@ -35,7 +36,7 @@ function Home() {
     }
   };
   return (
-    <div>
+    <div className={styles.main}>
       <h1>Home</h1>
       <CardsBooks books={books}/>
     </div>
