@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 import { useRouter } from "next/router";
 import { useBookContext } from "@/context/BookContext";
-import styles from "./detail.module.css";
+import styles from "../carritoDeCompra/carrito.module.css"
 import Rating from "../../components/Rating/Rating";
 import Link from "next/link";
-
-const DetallesBook = () => {
+ 
+const carritoDeCompra = () => {
   const { books } = useBookContext();
 
   const {
@@ -22,30 +22,20 @@ const DetallesBook = () => {
             <Link href={"/"}>Regresar</Link>
             <div className={styles.imagen}>
               <img src={detallebook.image} alt={detallebook.title} />
-              Valoracion:
-              <Rating ratingCount={detallebook.ratingCount} />
             </div>
           </div>
           <div className={styles.derecha}>
             <div className={styles.titulo}>
-              {" "}
-              <h1>{detallebook.title}</h1>{" "}
+              <h1>{detallebook.title}</h1>
+              <Rating ratingCount={detallebook.ratingCount} />
             </div>
             <div className={styles.autor}>
-              {" "}
-              <h3>{detallebook.authors}</h3>{" "}
+             <h3>{detallebook.authors}</h3>
             </div>
-            <div className={styles.descripcion}>
-              {" "}
-              <h4>Descripcion:</h4> <p> {detallebook.description}</p>{" "}
-            </div>
-
             <div className={styles.detalles}>
               <div>
-                {" "}
-                <h2>Price: ${detallebook.price}</h2>{" "}
+                <h2>Price: ${detallebook.price}</h2>
               </div>
-              <div> Vendidos: {detallebook.ratingCount} </div>
               <div>Genero: {detallebook.genre}</div>
               <Link href={`/carritoDeCompra/${id}`}>
           <button className={styles.button} type="button">Comprar</button>
@@ -54,10 +44,19 @@ const DetallesBook = () => {
           </div>
         </div>
       ) : (
-        <p>Book not found</p>
+        <div><p>Tu Carrito de BookScape está vacío
+        </p>
+        <div><Link href={"/login"}>
+          <button className={styles.button} type="button">Inicia sesión en tu cuenta</button>
+        </Link> </div>
+        <div><Link href={"/crearCuenta"}>
+          <button className={styles.button} type="button">Regístrate ahora</button>
+        </Link> </div>
+        </div>
+        
       )}
     </div>
   );
 };
 
-export default DetallesBook;
+export default carritoDeCompra;
