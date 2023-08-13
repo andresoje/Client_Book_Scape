@@ -29,14 +29,14 @@ const login = () => {
             />
           </div>
           <div>
-            <button>LOGIN</button>
+            <button className={styles.button}>LOGIN</button>
           </div>
         </form>
       </div>
       <div>¿Eres nuevo en BookScape?</div>
       <div>
         <Link href="/crear-cuenta">
-          <button type="button">Crea tu cuenta de BookScape</button>
+          <button className={styles.button} type="button">Crea tu cuenta de BookScape</button>
         </Link>
       </div>
     </div>
