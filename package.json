@@ -2,6 +2,7 @@
   "name": "my-app-ts",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://digitalweb.com.co/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,6 +20,7 @@
     "react-icons": "^4.10.1",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
+    "sharp": "^0.32.4",
     "typescript": "5.1.6"
   }
 }
