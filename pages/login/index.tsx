@@ -4,9 +4,9 @@ import Link from "next/link";
 const login = () => {
   return (
     <div className={styles.container}>
-      <div>login</div>
+      <div><h1>Ingresar</h1></div>
       <div className={styles.form}>
-        <form>
+        <form >
           {/* USERNAME */}
           <div>
             <label htmlFor="">Email</label>
@@ -15,6 +15,7 @@ const login = () => {
               placeholder="Email..."
               name="email"
               value="email"
+              className={styles.input}
             />
           </div>
 
@@ -26,6 +27,7 @@ const login = () => {
               placeholder="Password..."
               name="password"
               value="password"
+              className={styles.input}
             />
           </div>
           <div>
@@ -33,10 +35,11 @@ const login = () => {
           </div>
         </form>
       </div>
-      <div>¿Eres nuevo en BookScape?</div>
+      <div><br />¿Eres nuevo en BookScape?<br /></div>
       <div>
-        <Link href="/crear-cuenta">
-          <button className={styles.button} type="button">Crea tu cuenta de BookScape</button>
+
+        <Link href="/crearCuenta">
+          Crea tu cuenta de BookScape
         </Link>
       </div>
     </div>

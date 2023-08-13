@@ -1,33 +1,65 @@
 
-.wrapperSearch{
-    width: 320px;
-    height: 30px;
-    background-color: rgb(255, 255, 255);
+.inputbox {
     position: relative;
+    height: 50px;
+    max-width: 900px;
+    width: 100%;
+    background: #f9f9f9;
+    margin: 0 20px;
     border-radius: 8px;
-    margin: 0 20px 0px 20px;
-}
-.input{
-    width: 80%;
-    height: 100%;
-    position: absolute;
-    border: none;
-    background-color: transparent;
-}
-
-.input:focus {
-    outline: none;
-    padding-left: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   }
-
-.btn{
+  .inputbox i,
+  .inputbox .button {
     position: absolute;
-    border-radius: 8px;
-    border: none;
-    background-color: transparent;
-    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .inputbox i {
+    left: 20px;
+    font-size: 30px;
+    color: #d8d8d8;
+  }
+  .inputbox input {
     height: 100%;
-    color: rgb(155, 11, 11);
-    font-weight: bold;
+    width: 100%;
+    outline: none;
+    font-size: 18px;
+    font-weight: 400;
+    border: none;
+    padding: 0 155px 0 65px;
+    background-color: transparent;
+  }
+  .inputbox .button {
+    right: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    background-color: #c80a30;
     cursor: pointer;
-}
+  }
+  .inputbox .button:active {
+    transform: translateY(-50%) scale(0.98);
+  }
+  /* Responsive */
+  @media screen and (max-width: 500px) {
+    .inputbox {
+      height: 66px;
+      margin: 0 8px;
+    }
+    .inputbox i {
+      left: 12px;
+      font-size: 25px;
+    }
+    .inputbox input {
+      padding: 0 112px 0 50px;
+    }
+    .inputbox .button {
+      right: 12px;
+      font-size: 14px;
+      padding: 8px 18px;
+    }
+  }

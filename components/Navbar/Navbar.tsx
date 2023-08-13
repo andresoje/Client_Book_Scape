@@ -18,8 +18,7 @@ const Navbar = () => {
         </div>
         <div className={styles.contanier}>
           <div className={styles.SearchBar}>
-            Que quieres leer Hoy?
-            <SearchBar />{" "}
+             <SearchBar />
           </div>
           {usuario ? (
             <div>
@@ -27,14 +26,12 @@ const Navbar = () => {
               <button type="button">Cerrar Sesión</button>
             </div>
           ) : (
-            <Link href="/login" className={styles.Text}>
-              <IoLogoWhatsapp /> Registro o Inicio{" "}
-            </Link>
+            <Link href="/login" className={styles.Text}>Hola, Identifícate<IoMdPerson /></Link>
           )}
 
-          <Link href="/carrito-de-compra" className={styles.Iconos}>
-            <IoIosCart />
-            <IoMdPerson />
+          <Link href="/carritoDeCompra" className={styles.Iconos}>
+            Carrito <IoIosCart />
+            
           </Link>
         </div>
       </div>

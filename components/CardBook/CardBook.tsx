@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./CardBook.module.css";
 import Link from "next/link";
-import { IoIosCart } from "react-icons/io";
+import { IoIosCart, IoLogoHtml5 } from "react-icons/io";
 import Rating from "../Rating/Rating";
 import { useBookContext } from "@/context/BookContext";
 
@@ -29,16 +29,16 @@ const CardBook: React.FC<CardBookProps> = ({
         <div>
           <img src={image} alt={title} className={styles.image} />
          <Rating ratingCount={ratingCount} />
-        </div>
+        </div> </Link>
         <div className={styles.cardContent}>
-          <h2 className={styles.title}>{title}</h2>
-          <h3 className={styles.cardAuthors}>{authors}</h3>
-          <p className={styles.cardPrice}>Price: ${price}</p>
+          <h3 className={styles.title}>{title}</h3>
+          <h5 >{authors}</h5>
+          <h3 >${price}</h3>
         </div>
-    </Link>
    
-<Link key={id} href={`/carrito-de-compra/${id}`}>
-          <button className={styles.button} type="button">Comprar</button>
+   
+<Link key={id} href={`/carritoDeCompra/${id}`}>
+          <button className={styles.button} type="button">Comprar <IoIosCart /></button>
         </Link>    </div>
   );
 };
