@@ -6,6 +6,8 @@ import React from "react";
 import Layout from "@/components/Layout/Layout";
 import { BookProvider } from "@/context/BookContext";
 import { UsuarioProvider } from "@/context/UsuarioContext";
+import { useEffect } from "react";
+import axios from "axios";
 
 /**
  * Componente raíz de la aplicación.
@@ -14,6 +16,15 @@ import { UsuarioProvider } from "@/context/UsuarioContext";
  * @param pageProps - Propiedades pasadas a la página.
  */
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    
+    if (token) {
+      // Configura el token en el encabezado de las solicitudes Axios
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+  }, []);
+  
   return (
     <BookProvider>
       <UsuarioProvider>

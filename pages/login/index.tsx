@@ -1,43 +1,48 @@
 import React, { useState } from "react";
-import { useUsuarioContext } from "@/context/UsuarioContext";
 import styles from "./login.module.css";
 import Link from "next/link";
-import axios from "axios";
 import { useRouter } from "next/router";
 
 // validaciones
 import useValidacion from "../../hooks/useValidacion";
 import validarIniciarSesion from "../../validacion/validarIniciarSesion";
+import axios from "axios";
 
 const STATE_INICIAL = {
-  email: '',
-  password: ''
-}
-
-interface Usuario {
-  id: number
-  nombre: string;
-  email: string;
-  password: string;
-}
+  email: "",
+  password: "",
+};
 
 const login = () => {
+  const router = useRouter();
 
-  const [error, guardarError] = useState(false);
+  const [error, guardarError] = useState("");
 
   const { valores, errores, handleSubmit, handleChange, handleBlur } =
     useValidacion({
       stateInicial: STATE_INICIAL,
-      validar: validarIniciarSesion ,
+      validar: validarIniciarSesion,
       fn: IniciarSesion,
     });
 
   const { email, password } = valores;
-  
 
   async function IniciarSesion() {
-    console.log("Inicindo sesion...");
-    
+    try {
+      const response = await axios.post("/api/login", { email, password });
+
+      if (response.status === 200) {
+        const token = response.data.token; // Suponiendo que el backend devuelve un token
+        localStorage.setItem("token", token); // Almacena el token en el localStorage
+        console.log("Inicio de sesión exitoso");
+        router.push("/");
+      }
+    } catch (error: any) {
+      console.error("Hubo un error al iniciar sesión ", error.response);
+      guardarError(
+        "No pudimos encontrar una cuenta con esa dirección de correo electrónico, te invitamos a crear una cuenta"
+      ); // Mostrar mensaje de error en el frontend
+    }
   }
 
   return (
@@ -72,20 +77,23 @@ const login = () => {
           />
         </div>
         {errores.password && <p>{errores.password}</p>}
-        
+
         {error && <p>{error} </p>}
 
-        <button className={styles.button} type="submit" >Iniciar sesión</button>
+        <button className={styles.button} type="submit">
+          Iniciar sesión
+        </button>
       </form>
-    
+
       <div>¿Eres nuevo en BookScape?</div>
       <div>
         <Link href="/crearCuenta">
-          <button className={styles.button} type="button">Crea tu cuenta de BookScape</button>
+          <button className={styles.button} type="button">
+            Crea tu cuenta de BookScape
+          </button>
         </Link>
       </div>
     </div>
-   
   );
 };
 
