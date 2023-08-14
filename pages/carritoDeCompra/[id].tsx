@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import { useRouter } from "next/router";
 import { useBookContext } from "@/context/BookContext";
-import styles from "../carritoDeCompra/carrito.module.css"
+import styles from "../carritoDeCompra/carrito.module.css";
 import Rating from "../../components/Rating/Rating";
 import Link from "next/link";
- 
+
 const carritoDeCompra = () => {
   const { books } = useBookContext();
 
@@ -30,7 +30,7 @@ const carritoDeCompra = () => {
               <Rating ratingCount={detallebook.ratingCount} />
             </div>
             <div className={styles.autor}>
-             <h3>{detallebook.authors}</h3>
+              <h3>{detallebook.authors}</h3>
             </div>
             <div className={styles.detalles}>
               <div>
@@ -38,22 +38,31 @@ const carritoDeCompra = () => {
               </div>
               <div>Genero: {detallebook.genre}</div>
               <Link href={`/carritoDeCompra/${id}`}>
-          <button className={styles.button} type="button">Comprar</button>
-        </Link>   
+                <button className={styles.button} type="button">
+                  Comprar
+                </button>
+              </Link>
             </div>
           </div>
         </div>
       ) : (
-        <div><p>Tu Carrito de BookScape está vacío
-        </p>
-        <div><Link href={"/login"}>
-          <button className={styles.button} type="button">Inicia sesión en tu cuenta</button>
-        </Link> </div>
-        <div><Link href={"/crearCuenta"}>
-          <button className={styles.button} type="button">Regístrate ahora</button>
-        </Link> </div>
+        <div>
+          <p>Tu Carrito de BookScape está vacío</p>
+          <div>
+            <Link href={"/login"}>
+              <button className={styles.button} type="button">
+                Inicia sesión en tu cuenta
+              </button>
+            </Link>{" "}
+          </div>
+          <div>
+            <Link href={"/crearCuenta"}>
+              <button className={styles.button} type="button">
+                Regístrate ahora
+              </button>
+            </Link>{" "}
+          </div>
         </div>
-        
       )}
     </div>
   );

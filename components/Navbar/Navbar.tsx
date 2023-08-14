@@ -18,7 +18,7 @@ const Navbar = () => {
         </div>
         <div className={styles.contanier}>
           <div className={styles.SearchBar}>
-             <SearchBar />
+            <SearchBar />
           </div>
           {usuario ? (
             <div>
