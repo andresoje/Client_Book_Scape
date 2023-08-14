@@ -22,9 +22,7 @@ interface Usuario {
 }
 
 const login = () => {
-  const { agregarUsuario } = useUsuarioContext();
 
-  const router = useRouter();
   const [error, guardarError] = useState(false);
 
   const { valores, errores, handleSubmit, handleChange, handleBlur } =
@@ -82,7 +80,7 @@ const login = () => {
     
       <div>¿Eres nuevo en BookScape?</div>
       <div>
-        <Link href="/crear-cuenta">
+        <Link href="/crearCuenta">
           <button className={styles.button} type="button">Crea tu cuenta de BookScape</button>
         </Link>
       </div>

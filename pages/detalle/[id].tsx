@@ -47,7 +47,7 @@ const DetallesBook = () => {
               </div>
               <div> Vendidos: {detallebook.ratingCount} </div>
               <div>Genero: {detallebook.genre}</div>
-              <Link href={`/carritoDeCompra/${id}`}>
+              <Link href={`http://localhost:3000/carritoDeCompra/${id}`}>
           <button className={styles.button} type="button">Comprar</button>
         </Link>   
             </div>
