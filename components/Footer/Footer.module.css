@@ -1,16 +1,18 @@
 .footer{
     background: linear-gradient(180deg, #eeeded 26.71%, #1f1f1f 99.36%);
     width: 100%;
+
 }
 .container {
     margin-top: 50px;
-    height: 30px;
-    padding: 50px;
+    height: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10%;
-    flex-shrink: 0;
+    gap: 5%;
+
+    
+
 }
 
 .logo 
