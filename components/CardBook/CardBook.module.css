@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 4px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(211, 210, 210, 0.1);
+  /* box-shadow: 0 2px 4px rgba(211, 210, 210, 0.1); */
 }
 
 .cardContent{
@@ -17,7 +17,7 @@
 }
 .card {
   text-decoration: none;
-  width: 200px;
+  width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +41,7 @@
 
 .image {
   
-  margin-top: 2cqi;
+  margin-top: 1cqi;
   height: 15rem;
  
 
@@ -49,7 +49,7 @@
 
 @media screen and (max-width: 1200px) {
   .card {
-    width: 200px;
+    width: 150px;
 
   }
 
