@@ -18,7 +18,7 @@ const Navbar = () => {
         </div>
         <div className={styles.contanier}>
           <div className={styles.SearchBar}>
-             <SearchBar />
+            <SearchBar />
           </div>
           {usuario ? (
             <div>
@@ -26,12 +26,18 @@ const Navbar = () => {
               <button type="button">Cerrar Sesión</button>
             </div>
           ) : (
-            <Link href="/login" className={styles.Text}>Hola, Identifícate<IoMdPerson /></Link>
+            <div>
+              <Link href="/login" className={styles.Text}>
+                <p>
+                  {" "}
+                  Hola, Identifícate <IoMdPerson />
+                </p>
+              </Link>
+            </div>
           )}
 
           <Link href="/carritoDeCompra" className={styles.Iconos}>
             Carrito <IoIosCart />
-            
           </Link>
         </div>
       </div>

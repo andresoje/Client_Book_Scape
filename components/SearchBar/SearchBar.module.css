@@ -2,7 +2,6 @@
 .inputbox {
     position: relative;
     height: 50px;
-    max-width: 900px;
     width: 100%;
     background: #f9f9f9;
     margin: 0 20px;
@@ -22,7 +21,8 @@
   }
   .inputbox input {
     height: 100%;
-    width: 100%;
+    width: 50%;
+    text-align: center;
     outline: none;
     font-size: 18px;
     font-weight: 400;
