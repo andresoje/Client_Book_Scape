@@ -26,13 +26,13 @@ const Navbar = () => {
               <button type="button">Cerrar Sesión</button>
             </div>
           ) : (
-            <Link href="/login" className={styles.Text}>Hola, Identifícate<IoMdPerson /></Link>
-          )}
 
-          <Link href="/carritoDeCompra" className={styles.Iconos}>
-            Carrito <IoIosCart />
+            <Link href="/carritoDeCompra" className={styles.Iconos}>Carrito <IoIosCart />
             
-          </Link>
+            </Link>
+          )}
+            <Link href="/login" className={styles.Text}>Hola, Identifícate<IoMdPerson /></Link>
+
         </div>
       </div>
     </nav>

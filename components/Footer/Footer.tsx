@@ -16,8 +16,7 @@ const Footer = () => {
         <img src={logo.src} alt="" />
       </div>
       <div className={styles.SearchBar}>
-            Que quieres leer Hoy?
-            <SearchBar />{" "}
+           <SearchBar />{" "}
           </div>
       <div className={styles.redes}>
         {" "}
