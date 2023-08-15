@@ -4,6 +4,8 @@ import { useBookContext } from "@/context/BookContext";
 import styles from "./detail.module.css";
 import Rating from "../../components/Rating/Rating";
 import Link from "next/link";
+import { IoIosCart } from "react-icons/io";
+
 
 const DetallesBook = () => {
   const { books } = useBookContext();
@@ -37,18 +39,20 @@ const DetallesBook = () => {
             </div>
             <div className={styles.descripcion}>
               {" "}
-              <h4>Descripcion:</h4> <p> {detallebook.description}</p>{" "}
+              <h4>Descripción:</h4> <p> {detallebook.description}</p>{" "}
             </div>
 
             <div className={styles.detalles}>
               <div>
                 {" "}
-                <h2>Price: ${detallebook.price}</h2>{" "}
+                <h2>Precio: ${detallebook.price}</h2>{" "}
               </div>
               <div> Vendidos: {detallebook.ratingCount} </div>
               <div>Genero: {detallebook.genre}</div>
               <Link href={`http://localhost:3000/carritoDeCompra/${id}`}>
-          <button className={styles.button} type="button">Comprar</button>
+              <button className={styles.button} type="button">
+        <IoIosCart />Agregar al carrito
+        </button>
         </Link>   
             </div>
           </div>

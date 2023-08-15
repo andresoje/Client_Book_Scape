@@ -8,6 +8,7 @@ import validarCrearCuenta from "../../validacion/validarCrearCuenta";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
+import logo2 from "../../public/images/BookScapeLogo.png"
 
 
 interface ValidacionErrors {
@@ -72,7 +73,8 @@ const Crearcuenta = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Crear Cuenta</h1>
+          <img className={styles.logo2} src={logo2.src} alt="" />
+         <h1>Crear Cuenta</h1>
       <form onSubmit={handleSubmit} noValidate>
         <div>
           <label htmlFor="nombre">Tu nombre</label>
@@ -87,10 +89,10 @@ const Crearcuenta = () => {
             onBlur={handleBlur}
           />
         </div>
-        {errores.nombre && <p>{errores.nombre}</p>}
+        {errores.nombre && <p className={styles.alert}>{errores.nombre}</p>}
         <div>
           <label htmlFor="email">Correo electrónico</label>
-          <input
+          <input 
             type="email"
             id="email"
             placeholder="Email"
@@ -101,7 +103,7 @@ const Crearcuenta = () => {
             onBlur={handleBlur}
           />
         </div>
-        {errores.email && <p>{errores.email}</p>}
+        {errores.email && <p className={styles.alert}>{errores.email}</p>}
         <div>
           <label htmlFor="password">Contraseña</label>
           <input
@@ -115,12 +117,12 @@ const Crearcuenta = () => {
             onBlur={handleBlur}
           />
         </div>
-        {errores.password && <p>{errores.password}</p>}
+        {errores.password && <p className={styles.alert}>{errores.password}</p>}
         <div>
           <label htmlFor="passwordRepetida">
             Vuelve a escribir la contraseña
           </label>
-          <input
+          <input 
             type="password"
             id="passwordRepetida"
             placeholder="Repetir la contraseña"
@@ -131,7 +133,7 @@ const Crearcuenta = () => {
             onBlur={handleBlur}
           />
         </div>
-        {errores.passwordRepetida && <p>{errores.passwordRepetida}</p>}
+        {errores.passwordRepetida && <p className={styles.alert}>{errores.passwordRepetida}</p>}
         {error && <p>{error} </p>}
 
         <button className={styles.button} type="submit" >Crear Cuenta</button>

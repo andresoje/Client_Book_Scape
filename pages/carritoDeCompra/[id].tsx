@@ -47,21 +47,7 @@ const carritoDeCompra = () => {
         </div>
       ) : (
         <div>
-          <p>Tu Carrito de BookScape está vacío</p>
-          <div>
-            <Link href={"/login"}>
-              <button className={styles.button} type="button">
-                Inicia sesión en tu cuenta
-              </button>
-            </Link>{" "}
-          </div>
-          <div>
-            <Link href={"/crearCuenta"}>
-              <button className={styles.button} type="button">
-                Regístrate ahora
-              </button>
-            </Link>{" "}
-          </div>
+       
         </div>
       )}
     </div>

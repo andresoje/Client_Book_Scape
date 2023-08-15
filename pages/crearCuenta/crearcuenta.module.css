@@ -32,3 +32,28 @@
 .button:hover {
   background-color: #d33434;
 }
+
+.alert{
+  color: rgb(238, 0, 32);
+  font-size: smaller;
+}
+
+
+
+.input2{
+  border-radius: 15px;
+  width: 200px;
+  height: 30px;
+  margin: 5px;
+  text-align: center;
+  background-color: rgba(208, 209, 209, 0.767);
+}
+
+.logo2 {
+  width: 150px;
+  text-align: center;
+}
+
+
+
+

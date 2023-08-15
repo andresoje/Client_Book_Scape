@@ -29,18 +29,18 @@ const CardBook: React.FC<CardBookProps> = ({
         <div>
           <img src={image} alt={title} className={styles.image} />
           <Rating ratingCount={ratingCount} />
-        </div>
+        </div> </Link>
         <div className={styles.cardContent}>
-          <h2 className={styles.title}>{title}</h2>
-          <h3 className={styles.cardAuthors}>{authors}</h3>
-          <p className={styles.cardPrice}>Price: ${price}</p>
+          <h6 className={styles.title}>{title}</h6>
+          <h4 className={styles.cardAuthors}>{authors}</h4>
+          <h3 className={styles.cardPrice}>${price}</h3>
         </div>
-      </Link>
-      <Link href={`/carritoDeCompra/${id}`}>
+     
+      {/* <Link href={`/carritoDeCompra/${id}`}>
         <button className={styles.button} type="button">
-          Comprar
+        <IoIosCart />Agregar al carrito
         </button>
-      </Link>{" "}
+      </Link> */}
     </div>
   );
 };
