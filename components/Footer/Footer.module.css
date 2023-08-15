@@ -35,13 +35,14 @@ width: 200px;
 
 
 .links{
+    text-decoration: none;
     width: 20%;
     margin-top: 50px;
     color: #222222;
     font-weight: 500;
     line-height: 24px; /* 133.333% */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-decoration: none;
+    
 
 }
 
