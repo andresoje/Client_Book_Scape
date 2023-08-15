@@ -2,9 +2,9 @@
 .inputbox {
     position: relative;
     height: 50px;
-    width: 100%;
+    width: 90%;
     background: #f9f9f9;
-    margin: 0 20px;
+    margin: 10px 20px;
     border-radius: 8px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   }
@@ -47,19 +47,19 @@
   /* Responsive */
   @media screen and (max-width: 500px) {
     .inputbox {
-      height: 66px;
+      height: 36px;
       margin: 0 8px;
     }
     .inputbox i {
       left: 12px;
-      font-size: 25px;
+      font-size: 0.2rem;
     }
     .inputbox input {
-      padding: 0 112px 0 50px;
+      padding: 0 90px 0 50px;
     }
     .inputbox .button {
-      right: 12px;
-      font-size: 14px;
-      padding: 8px 18px;
+      right: 8px;
+      font-size: 0.8rem;
+      padding: 8px 8px;
     }
   }
