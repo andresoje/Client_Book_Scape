@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import styles from "./login.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import logo2 from "../../public/images/BookScapeLogo.png"
+
 
 // validaciones
 import useValidacion from "../../hooks/useValidacion";
 import validarIniciarSesion from "../../validacion/validarIniciarSesion";
 import axios from "axios";
+
+
+
 
 const STATE_INICIAL = {
   email: "",
@@ -47,6 +52,7 @@ const login = () => {
 
   return (
     <div className={styles.container}>
+      <img className={styles.logo2} src={logo2.src} alt="" />
       <h1>Iniciar sesión</h1>
       <form onSubmit={handleSubmit} noValidate>
         <div>
@@ -62,7 +68,7 @@ const login = () => {
             onBlur={handleBlur}
           />
         </div>
-        {errores.email && <p>{errores.email}</p>}
+        {errores.email && <p className={styles.alert}>{errores.email}</p>}
         <div>
           <label htmlFor="password">Contraseña</label>
           <input
@@ -76,21 +82,18 @@ const login = () => {
             onBlur={handleBlur}
           />
         </div>
-        {errores.password && <p>{errores.password}</p>}
+        {errores.password && <p className={styles.alert}>{errores.password}</p>}
 
-        {error && <p>{error} </p>}
+        {error && <p className={styles.alert}>{error} </p >}
 
         <button className={styles.button} type="submit">
           Iniciar sesión
         </button>
       </form>
-
       <div>¿Eres nuevo en BookScape?</div>
       <div>
         <Link href="/crearCuenta">
-          <button className={styles.button} type="button">
             Crea tu cuenta de BookScape
-          </button>
         </Link>
       </div>
     </div>

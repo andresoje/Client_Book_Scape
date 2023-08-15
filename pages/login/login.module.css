@@ -33,4 +33,14 @@
   .button:hover {
     background-color: #d33434;
   }
+
+  .logo2 {
+    width: 150px;
+    text-align: center;
+  }
   
+
+  .alert{
+    color: rgb(238, 0, 32);
+    font-size: smaller;
+  }
