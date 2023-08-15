@@ -25,10 +25,10 @@ const Footer = () => {
       </div>
       
       <div className={styles.links}>
-        <p>Mi Cuenta <br /> 
-        Carrito<br />
-        Terminos y Condiciones<br />
-        </p>
+       <Link rel="stylesheet" href="/crearCuenta"> Mi Cuenta<br /></Link>         
+       <Link rel="stylesheet" href="/carritoDeCompra">Carrito<br /></Link>
+       Terminos y Condiciones<br />
+   
       </div>    
 
     </div>
