@@ -9,7 +9,7 @@ import Pagination from "@/components/Pagination/Pagination";
 function Home() {
   // Utiliza el hook useBookContext para obtener los datos y funciones del contexto
   const { books } = useBookContext();
-  const itemsPerPage = 5; // Cambia esto al número de elementos por página
+  const itemsPerPage = 10; // Cambia esto al número de elementos por página
   const [currentPage, setCurrentPage] = useState(1);
   
   const handlePageChange = (page: number) => {

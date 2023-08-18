@@ -25,7 +25,7 @@ const DetallesBook = () => {
             <div className={styles.imagen}>
               <img src={detallebook.image} alt={detallebook.title} />
               Valoracion:
-              <Rating ratingCount={detallebook.ratingCount} />
+              <Rating ratingCount={detallebook.rating_ave} />
             </div>
           </div>
           <div className={styles.derecha}>
@@ -47,8 +47,7 @@ const DetallesBook = () => {
                 {" "}
                 <h2>Precio: ${detallebook.price}</h2>{" "}
               </div>
-              <div> Vendidos: {detallebook.ratingCount} </div>
-              <div>Genero: {detallebook.genre}</div>
+              <div>Genero: {detallebook.tags}</div>
               <Link href={`http://localhost:3000/carritoDeCompra/${id}`}>
               <button className={styles.button} type="button">
         <IoIosCart />Agregar al carrito
