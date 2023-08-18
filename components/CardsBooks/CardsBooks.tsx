@@ -5,11 +5,11 @@ import styles from "./CardsBooks.module.css";
 type Book = {
   id: number;
   title: string;
-  authors: string;
+  authors: string[];
   price: number;
-  genre: string[];
+  tags: string[];
   image: string;
-  ratingCount: number;
+  rating_ave: number;
 };
 
 type CardsBooksProps = {
@@ -19,16 +19,16 @@ type CardsBooksProps = {
 const CardsBooks: React.FC<CardsBooksProps> = ({ books }) => {
   return (
     <div className={styles.container}>
-      {books.map(({ title, authors, price, genre, image, id, ratingCount }, index) => (
+      {books.map(({ title, authors, price, tags, image, id, rating_ave }, index) => (
         <CardBook
-          key={id}
+          key={index}
           id={id}
           title={title}
           authors={authors}
           price={price}
-          genre={genre}
+          tags={tags}
           image={image}
-          ratingCount={ratingCount}
+          rating_ave={rating_ave}
         />
       ))}
     </div>

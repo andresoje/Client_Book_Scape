@@ -4,17 +4,15 @@ import axios from "axios";
 type Book = {
   id: number;
   title: string;
-  authors: string;
+  authors: string[];
+  published_date: number;
   price: number;
   description: string;
-  rating: number;
+  rating_ave: number;
   image: string;
-  flag: string;
-  currency: string;
-  ratingCount: number;
-  genre: string[];
+  page_count: number;
+  tags: string[];
   language: string;
-  stock: number;
 };
 
 // Definición del tipo de objeto para el contexto "BookContextType"
@@ -49,7 +47,7 @@ export const BookProvider: React.FC<BookProviderProps> = ({ children }) => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get("/api/books"); // Asegúrate de que la ruta sea correcta
+      const response = await axios.get("http://localhost:3001/books/"); // Asegúrate de que la ruta sea correcta
       setBooks(response.data);
     } catch (error) {
       console.error("Error fetching books:", error);
