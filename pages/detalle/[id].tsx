@@ -24,7 +24,7 @@ const DetallesBook = () => {
             <Link href={"/"}>Regresar</Link>
             <div className={styles.imagen}>
               <img src={detallebook.image} alt={detallebook.title} />
-              Valoracion:
+            
               <Rating ratingCount={detallebook.rating_ave} />
             </div>
           </div>
