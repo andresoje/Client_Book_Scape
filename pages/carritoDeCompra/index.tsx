@@ -5,6 +5,7 @@ import logo from "../../public/images/vcarrito.png";
 
 const carritoDeCompra = () => {
   return (
+    <>
     <div className={styles.container2}>
       <h1>Tu Carrito de BookScape está vacío</h1>
         <div className={styles.container3}>
@@ -30,6 +31,9 @@ const carritoDeCompra = () => {
         </div>
         <p>El precio y la disponibilidad de los productos de BookScape.com están sujetos a cambio. En el carrito de compras puedes dejar temporalmente los productos que quieras. Aparecerá el precio más reciente de cada producto.</p>
     </div>
+
+    
+    </>
   );
 };
 

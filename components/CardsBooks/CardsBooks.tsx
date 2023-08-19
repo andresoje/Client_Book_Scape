@@ -1,4 +1,3 @@
-import { Rating } from "semantic-ui-react";
 import CardBook from "../CardBook/CardBook";
 import styles from "./CardsBooks.module.css";
 

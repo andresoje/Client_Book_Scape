@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useBookContext } from "@/context/BookContext";
 import styles from "./detail.module.css";
 import Rating from "../../components/Rating/Rating";
 import Link from "next/link";
 import { IoIosCart } from "react-icons/io";
-
+import { useCartContext } from "@/context/CartContext";
 
 const DetallesBook = () => {
   const { books } = useBookContext();
@@ -16,6 +16,9 @@ const DetallesBook = () => {
 
   const detallebook = books.find((book) => book.id === Number(id));
 
+  // carrito de compra
+  const { addToCart } = useCartContext();
+
   return (
     <div>
       {detallebook ? (
@@ -24,7 +27,7 @@ const DetallesBook = () => {
             <Link href={"/"}>Regresar</Link>
             <div className={styles.imagen}>
               <img src={detallebook.image} alt={detallebook.title} />
-            
+
               <Rating ratingCount={detallebook.rating_ave} />
             </div>
           </div>
@@ -48,11 +51,15 @@ const DetallesBook = () => {
                 <h2>Precio: ${detallebook.price}</h2>{" "}
               </div>
               <div>Genero: {detallebook.tags}</div>
-              <Link href={`http://localhost:3000/carritoDeCompra/${id}`}>
-              <button className={styles.button} type="button">
-        <IoIosCart />Agregar al carrito
-        </button>
-        </Link>   
+              <Link href={`/carritoDeCompra/carrito`}>
+                <button
+                  onClick={() => addToCart(detallebook)}
+                  className={styles.button}
+                >
+                  <IoIosCart />
+                  Agregar al carrito
+                </button>
+              </Link>
             </div>
           </div>
         </div>
