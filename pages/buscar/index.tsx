@@ -74,7 +74,7 @@ const Buscar: React.FC = () => {
         <div>
           {currentBooks.length === 0 ? (
             <div>
-              <h3>Sin resultados para {q} en Books.</h3>
+              <h3>Sin resultados para {q} en BookScape.</h3>
               <p>Revisa la ortografía o usa términos más generales.</p>
             </div>
           ) : (

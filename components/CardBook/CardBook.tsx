@@ -3,7 +3,6 @@ import styles from "./CardBook.module.css";
 import Link from "next/link";
 import Rating from "../Rating/Rating";
 
-
 type CardBookProps = {
   id: number;
   title: string;
@@ -28,12 +27,13 @@ const CardBook: React.FC<CardBookProps> = ({
         <div>
           <img src={image} alt={title} className={styles.image} />
           <Rating ratingCount={rating_ave} />
-        </div> </Link>
-        <div className={styles.cardContent}>
-          <h6 className={styles.title}>{title}</h6>
-          <h4 className={styles.cardAuthors}>{authors}</h4>
-          <h3 className={styles.cardPrice}>${price}</h3>
-        </div>
+          <div className={styles.cardContent}>
+            <h6 className={styles.title}>{title}</h6>
+            <h4 className={styles.cardAuthors}>{authors}</h4>
+            <h3 className={styles.cardPrice}>${price}</h3>
+          </div>
+        </div>{" "}
+      </Link>
     </div>
   );
 };

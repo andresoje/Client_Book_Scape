@@ -27,7 +27,7 @@ const carritoDeCompra = () => {
           <div className={styles.derecha}>
             <div className={styles.titulo}>
               <h1>{detallebook.title}</h1>
-              <Rating ratingCount={detallebook.ratingCount} />
+              <Rating ratingCount={detallebook.rating_ave} />
             </div>
             <div className={styles.autor}>
               <h3>{detallebook.authors}</h3>
@@ -36,7 +36,7 @@ const carritoDeCompra = () => {
               <div>
                 <h2>Price: ${detallebook.price}</h2>
               </div>
-              <div>Genero: {detallebook.genre}</div>
+              <div>Genero: {detallebook.tags}</div>
               <Link href={`/carritoDeCompra/${id}`}>
                 <button className={styles.button} type="button">
                   Comprar

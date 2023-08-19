@@ -51,7 +51,6 @@ const DetallesBook = () => {
                 <h2>Precio: ${detallebook.price}</h2>{" "}
               </div>
               <div>Genero: {detallebook.tags}</div>
-<<<<<<< HEAD:pages/detalle/[id].tsx
               <Link href={`/carritoDeCompra/carrito`}>
                 <button
                   onClick={() => addToCart(detallebook)}
@@ -61,13 +60,6 @@ const DetallesBook = () => {
                   Agregar al carrito
                 </button>
               </Link>
-=======
-              <Link href={`book/${id}`}>
-              <button className={styles.button} type="button">
-        <IoIosCart />Agregar al carrito
-        </button>
-        </Link>   
->>>>>>> 71a924ad7b6c361c489e0c808e86c517bc3e8f9c:pages/book/[id].tsx
             </div>
           </div>
         </div>

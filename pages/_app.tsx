@@ -8,6 +8,7 @@ import { BookProvider } from "@/context/BookContext";
 import { UsuarioProvider } from "@/context/UsuarioContext";
 import { useEffect } from "react";
 import axios from "axios";
+import { CartProvider } from "@/context/CartContext";
 
 /**
  * Componente raíz de la aplicación.
@@ -28,10 +29,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <BookProvider>
       <UsuarioProvider>
+      <CartProvider>
         <Layout>
           {/* El componente Layout envuelve cada página */}
           <Component {...pageProps} />
         </Layout>
+        </CartProvider>
       </UsuarioProvider>
     </BookProvider>
   );
