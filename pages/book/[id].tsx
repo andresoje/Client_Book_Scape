@@ -48,7 +48,7 @@ const DetallesBook = () => {
                 <h2>Precio: ${detallebook.price}</h2>{" "}
               </div>
               <div>Genero: {detallebook.tags}</div>
-              <Link href={`http://localhost:3000/carritoDeCompra/${id}`}>
+              <Link href={`book/${id}`}>
               <button className={styles.button} type="button">
         <IoIosCart />Agregar al carrito
         </button>

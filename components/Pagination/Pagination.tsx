@@ -1,5 +1,6 @@
 // pagination.tsx
 import React from 'react';
+import styles from './Pagination.module.css';
 
 interface PaginationProps {
   currentPage: number;
@@ -11,16 +12,34 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
-    <div className="pagination">
+    <div className={styles.container__pagination}>
+      <button
+        className={styles.button__pagination}
+        disabled={currentPage === 1}
+        onClick={() => onPageChange(currentPage - 1)}
+      >
+        &lt; {/* Flecha hacia la izquierda */}
+      </button>
+
       {pages.map((page) => (
         <button
+          className={`${styles.button__pagination} ${
+            page === currentPage ? styles.b__active : ''
+          }`}
           key={page}
-          className={currentPage === page ? 'active' : ''}
           onClick={() => onPageChange(page)}
         >
           {page}
         </button>
       ))}
+
+      <button
+        className={styles.button__pagination}
+        disabled={currentPage === totalPages}
+        onClick={() => onPageChange(currentPage + 1)}
+      >
+        &gt; {/* Flecha hacia la derecha */}
+      </button>
     </div>
   );
 };
