@@ -24,7 +24,7 @@ const CardBook: React.FC<CardBookProps> = ({
 }) => {
   return (
     <div className={styles.imageContainer}>
-      <Link href={`/detalle/${id}`} className={styles.card}>
+      <Link href={`/book/${id}`} className={styles.card}>
         <div>
           <img src={image} alt={title} className={styles.image} />
           <Rating ratingCount={rating_ave} />
