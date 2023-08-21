@@ -1,55 +1,100 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
-// Definir la interfaz para un artículo en el carrito
 interface CartItem {
   id: number;
   title: string;
   price: number;
   image: string;
   authors: string[];
+  cantidad: number;
 }
 
-// Definir la interfaz para el contexto del carrito
 interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (item: CartItem) => void;
+  agregarCarrito: (item: CartItem) => void;
+  eliminarProducto: (id: number) => void;
+  actualizarCantidad: (cart: CartItem) => void;
 }
 
-// Crear el contexto del carrito
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-// Hook personalizado "useCartContext" para consumir el contexto
-export const useCartContext = () => {
+export const useCartContext = (): CartContextType => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error("useCartContext debe usarse dentro de un BookProvider");
+    throw new Error("useCartContext debe usarse dentro de un CartProvider");
   }
   return context;
 };
 
-// Crear el proveedor del contexto
 export const CartProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  
+  const initialState: CartItem[] = [];
+  const [cartItems, setCartItems] = useState<CartItem[]>(initialState);
+  
+  useEffect(() => {
+    const carritoLS = JSON.parse(
+      localStorage.getItem("cart") || "null"
+    ) as CartItem[];
+    if (carritoLS) {
+      setCartItems(carritoLS);
+    }
+  }, []);
 
-  // Función para agregar un artículo al carrito
-  const addToCart = (item: CartItem) => {
-    setCartItems([...cartItems, item]);
+  useEffect(() => {
+    if (cartItems !== initialState) {
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
+
+  const agregarCarrito = (cart: CartItem): void => {
+    if (cartItems.some((cartState) => cartState.id === cart.id)) {
+      const carritoActualizado = cartItems.map((cartState) => {
+        if (cartState.id === cart.id) {
+          cartState.cantidad = cart.cantidad;
+        }
+        return cartState;
+      });
+      setCartItems([...carritoActualizado]);
+      localStorage.setItem("cart", JSON.stringify(cartItems));
+    } else {
+      setCartItems([...cartItems, cart]);
+      window.localStorage.setItem("cart", JSON.stringify(cartItems));
+    }
   };
 
-  // Puedes agregar más funciones relacionadas con el carrito aquí
+  const eliminarProducto = (id: number): void => {
+    const carritoActualizado = cartItems.filter((cart) => cart.id !== id);
+    setCartItems(carritoActualizado);
+    window.localStorage.setItem("cart", JSON.stringify(cartItems));
+  };
 
-  // Creación del objeto "contextValue" con la información del contexto
+  const actualizarCantidad = (cart: CartItem): void => {
+    const carritoActualizado = cartItems.map((cartState) => {
+      if (cartState.id === cart.id) {
+        (cartState.cantidad = cart.cantidad), 10;
+      }
+      return cartState;
+    });
+    setCartItems(carritoActualizado);
+    window.localStorage.setItem("cart", JSON.stringify(cartItems));
+  };
+
   const contextValue: CartContextType = {
-    cartItems, 
-    addToCart
+    cartItems,
+    agregarCarrito,
+    eliminarProducto,
+    actualizarCantidad,
   };
 
   return (
-    <CartContext.Provider value={contextValue}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
 };
-

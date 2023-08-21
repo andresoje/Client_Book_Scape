@@ -96,3 +96,19 @@ img{
       .button:hover {
         background-color: #d33434;
       }
+
+   .contenido {
+    display: flex;
+    align-items: flex-start;
+    gap: 5rem;
+   }
+
+   .carrito {
+    padding: 3rem 0;
+   }
+
+   .resumen {
+    background-color: #f9fafb;
+    padding: 3rem;
+    border-radius: 1rem;
+   }

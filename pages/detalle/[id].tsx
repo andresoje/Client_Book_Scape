@@ -51,13 +51,25 @@ const DetallesBook = () => {
                 <h2>Precio: ${detallebook.price}</h2>{" "}
               </div>
               <div>Genero: {detallebook.tags}</div>
-              <Link href={`/carritoDeCompra/carrito`}>
+              <form className={styles.formulario}>
+                <label htmlFor="cantidad">Cantidad:</label>
+                <select id="cantidad">
+                  <option value="0">-- Seleccione --</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <input type="submit" value="Agregar al Carrito" />
+              </form>
+              <Link href={`/CarritoDeCompra`}>
                 <button
                   onClick={() => addToCart(detallebook)}
                   className={styles.button}
                 >
                   <IoIosCart />
-                  Agregar al carrito
+                  ir al carrito
                 </button>
               </Link>
             </div>

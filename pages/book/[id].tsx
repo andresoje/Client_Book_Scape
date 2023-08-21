@@ -8,16 +8,54 @@ import { IoIosCart } from "react-icons/io";
 import { useCartContext } from "@/context/CartContext";
 
 const DetallesBook = () => {
+  const [cantidad, setCantidad] = useState(1);
   const { books } = useBookContext();
-
   const {
     query: { id },
   } = useRouter();
 
   const detallebook = books.find((book) => book.id === Number(id));
 
-  // carrito de compra
-  const { addToCart } = useCartContext();
+  const { agregarCarrito, cartItems } = useCartContext();
+
+  // const addToCartHandler = () => {
+  //   if (detallebook) {
+  //     const cartItem = {
+  //       id: detallebook.id,
+  //       title: detallebook.title,
+  //       price: detallebook.price,
+  //       image: detallebook.image,
+  //       authors: detallebook.authors,
+  //       cantidad,
+  //     };
+
+  //     addToCart(cartItem);
+  //   }
+  // };
+
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
+
+    if (cantidad < 1) {
+      alert("Cantidad no válida");
+      return;
+    }
+
+    if (detallebook) {
+      const cartItem = {
+        id: detallebook.id,
+        title: detallebook.title,
+        price: detallebook.price,
+        image: detallebook.image,
+        authors: detallebook.authors,
+        cantidad,
+      };
+
+      console.log(cartItem);
+
+      agregarCarrito(cartItem);
+    }
+  };
 
   return (
     <div>
@@ -51,23 +89,33 @@ const DetallesBook = () => {
                 <h2>Precio: ${detallebook.price}</h2>{" "}
               </div>
               <div>Genero: {detallebook.tags}</div>
-<<<<<<< HEAD:pages/detalle/[id].tsx
-              <Link href={`/carritoDeCompra/carrito`}>
-                <button
-                  onClick={() => addToCart(detallebook)}
-                  className={styles.button}
+              <form className={styles.formulario} onSubmit={handleSubmit}>
+                <label htmlFor="cantidad">Cantidad:</label>
+
+                <select
+                  id="cantidad"
+                  onChange={(e) => setCantidad(+e.target.value)}
                 >
-                  <IoIosCart />
-                  Agregar al carrito
-                </button>
-              </Link>
-=======
-              <Link href={`book/${id}`}>
-              <button className={styles.button} type="button">
-        <IoIosCart />Agregar al carrito
-        </button>
-        </Link>   
->>>>>>> 71a924ad7b6c361c489e0c808e86c517bc3e8f9c:pages/book/[id].tsx
+                  <option value="0">-- Seleccione --</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+
+                <input
+                  type="submit"
+                  value="Agregar al carrito"
+                  className={styles.button}
+                />
+                {/* <Link href={`/carritoDeCompra/`}>
+                  <button onClick={addToCartHandler} className={styles.button}>
+                    <IoIosCart />
+                    ir al carrito
+                  </button>
+                </Link> */}
+              </form>
             </div>
           </div>
         </div>
