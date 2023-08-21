@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import { useBookContext } from "@/context/BookContext";
 import autor from "../public/images/autor.png";
 import Pagination from "@/components/Pagination/Pagination";
+import Filters from "@components/Filters/Filters"
  
 
 function Home() {
