@@ -1,12 +1,21 @@
 import CardBook from "../CardBook/CardBook";
 import styles from "./CardsBooks.module.css";
+type Author = {
+  name: string;
+  // Agrega otras propiedades si es necesario
+};
+
+type Tags = {
+  name: string;
+  // Agrega otras propiedades si es necesario
+};
 
 type Book = {
-  id: number;
+  id_book: number;
   title: string;
-  authors: string[];
+  Authors: Author[];
   price: number;
-  tags: string[];
+  Tags: Tags[];
   image: string;
   rating_ave: number;
 };
@@ -18,14 +27,14 @@ type CardsBooksProps = {
 const CardsBooks: React.FC<CardsBooksProps> = ({ books }) => {
   return (
     <div className={styles.container}>
-      {books.map(({ title, authors, price, tags, image, id, rating_ave }, index) => (
+      {books.map(({ title, Authors, price, Tags, image, id_book, rating_ave }, index) => (
         <CardBook
           key={index}
-          id={id}
+          id_book={id_book}
           title={title}
-          authors={authors}
+          Authors={Authors}
           price={price}
-          tags={tags}
+          Tags={Tags}
           image={image}
           rating_ave={rating_ave}
         />

@@ -6,19 +6,29 @@ import styles from "../../styles/Home.module.css";
 import autor from "../../public/images/autor.png";
 import Pagination from "@/components/Pagination/Pagination";
 
-interface Book {
-  id: number;
+type Author = {
+  name: string;
+  // Agrega otras propiedades si es necesario
+};
+
+type Tags = {
+  name: string;
+  // Agrega otras propiedades si es necesario
+};
+
+type Book = {
+  id_book: number;
   title: string;
-  authors: string[];
+  Authors: Author[];
   published_date: number;
   price: number;
   description: string;
   rating_ave: number;
   image: string;
   page_count: number;
-  tags: string[];
-  language: string;
-}
+  Tags: Tags[];
+  Language: string;
+};
 
 const normalizeString = (str: string) => {
   return str
@@ -46,11 +56,11 @@ const Buscar: React.FC = () => {
   useEffect(() => {
     const filteredBooks = books.filter((book: Book) => {
       const normalizedTitle = normalizeString(book.title);
-      const authorsMatch = book.authors.some((author) =>
-        normalizeString(author).includes(q)
+      const authorsMatch = book.Authors.some((author) =>
+        normalizeString(author.name).includes(q)
       );
-      const tagsMatch = book.tags.some((tag) =>
-        normalizeString(tag).includes(q)
+      const tagsMatch = book.Tags.some((tag) =>
+        normalizeString(tag.name).includes(q)
       );
       return normalizedTitle.includes(q) || authorsMatch || tagsMatch;
     });

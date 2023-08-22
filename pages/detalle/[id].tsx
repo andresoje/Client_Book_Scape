@@ -17,7 +17,7 @@ const DetallesBook = () => {
   const detallebook = books.find((book) => book.id === Number(id));
 
   // carrito de compra
-  const { agregarCarrito, cartItems } = useCartContext();
+  const { agregarCarrito} = useCartContext();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -64,13 +64,13 @@ const DetallesBook = () => {
               <button type="submit" className={styles.button}>
                 Agregar al Carrito
               </button>
-            </form>
             <Link href={`/CarritoDeCompra`}>
               <button className={styles.button}>
                 <IoIosCart />
                 Ir al Carrito
               </button>
             </Link>
+            </form>
           </div>
         </div>
       ) : (

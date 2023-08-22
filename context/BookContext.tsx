@@ -1,18 +1,28 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 // Definición del tipo de objeto "Book"
+type Author = {
+  name: string;
+  // Agrega otras propiedades si es necesario
+};
+
+type Tags = {
+  name: string;
+  // Agrega otras propiedades si es necesario
+};
+
 type Book = {
-  id: number;
+  id_book: number;
   title: string;
-  authors: string[];
+  Authors: Author[];
   published_date: number;
   price: number;
   description: string;
   rating_ave: number;
   image: string;
   page_count: number;
-  tags: string[];
-  language: string;
+  Tags: Tags[];
+  Language: string;
 };
 
 // Definición del tipo de objeto para el contexto "BookContextType"
@@ -47,17 +57,23 @@ export const BookProvider: React.FC<BookProviderProps> = ({ children }) => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/books/"); // Asegúrate de que la ruta sea correcta
-      setBooks(response.data);
+      const response = await axios.get("http://localhost:3001/books/");
+      const booksWithRandomRating = response.data.map((book: Book) => ({
+        ...book,
+        rating_ave:
+          book.rating_ave !== null ? book.rating_ave : (Math.random() * 3 + 4).toFixed(1),
+          page_count:
+          book.page_count !== null ? book.page_count : (Math.random() * 200).toFixed(0),
+      }));
+      setBooks(booksWithRandomRating);
     } catch (error) {
       console.error("Error fetching books:", error);
     }
   };
 
-
   // Creación del objeto "contextValue" con la información del contexto
   const contextValue: BookContextType = {
-    books
+    books,
   };
 
   // Retorna el componente "BookContext.Provider" que envuelve a los componentes hijos
