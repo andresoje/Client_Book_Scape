@@ -18,8 +18,7 @@ const DetallesBook = () => {
 
   const { agregarCarrito, cartItems } = useCartContext();
 
-
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     if (cantidad < 1) {
@@ -33,7 +32,7 @@ const DetallesBook = () => {
         title: detallebook.title,
         price: detallebook.price,
         image: detallebook.image,
-        authors: detallebook.Authors.map(author => author.name),
+        authors: detallebook.Authors.map((author) => author.name),
         cantidad,
       };
 
@@ -49,57 +48,54 @@ const DetallesBook = () => {
             <Link href={"/"}>Regresar</Link>
             <div className={styles.imagen}>
               <img src={detallebook.image} alt={detallebook.title} />
-
               <Rating ratingCount={detallebook.rating_ave} />
             </div>
           </div>
           <div className={styles.derecha}>
             <div className={styles.titulo}>
-              {" "}
-              <h1>{detallebook.title}</h1>{" "}
+              <h1>{detallebook.title}</h1>
             </div>
             <div className={styles.autor}>
-              {" "}
-              <h3>{detallebook.Authors.map(author => author.name)}</h3>{" "}
+              <h3>{detallebook.Authors.map((author) => author.name)}</h3>
             </div>
             <div className={styles.descripcion}>
-              {" "}
-              <h4>Descripción:</h4> <p> {detallebook.description}</p>{" "}
+              <h4>Descripción:</h4>
+              <p> {detallebook.description}</p>
             </div>
-
             <div className={styles.detalles}>
+              <div><h3>Genero: </h3>{detallebook.Tags.map((tag) => tag.name)}</div>
               <div>
-                {" "}
-                <h2>Precio: ${detallebook.price}</h2>{" "}
+                <h2>${detallebook.price}</h2>
               </div>
-              <div>Genero: {detallebook.Tags.map(tag => tag.name)}</div>
-              <form className={styles.formulario} onSubmit={handleSubmit}>
-                <label htmlFor="cantidad">Cantidad:</label>
 
-                <select
-                  id="cantidad"
-                  onChange={(e) => setCantidad(+e.target.value)}
-                >
-                  <option value="0">-- Seleccione --</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-
-                <input
-                  type="submit"
-                  value="Agregar al carrito"
-                  className={styles.button}
-                />
-                <Link href={`/carritoDeCompra/`}>
-                  <button className={styles.button}>
-                    <IoIosCart />
-                    ir al carrito
-                  </button>
-                </Link>
-              </form>
+              <div className={styles.formulario}>
+                <form onSubmit={handleSubmit}>
+                  <div> <label htmlFor="cantidad">Cantidad:</label>
+                  <select
+                    id="cantidad"
+                    onChange={(e) => setCantidad(+e.target.value)}
+                  >
+                    <option value="0"></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select></div>
+                  <div><input
+                    type="submit"
+                    value="Agregar al carrito"
+                    className={styles.button}
+                  /></div>
+                  <div><Link href={`/`}>
+                    <button className={styles.button}>
+                      <IoIosCart />
+                      Seguir Comprando
+                    </button>
+                  </Link></div>
+                
+                </form>
+              </div>
             </div>
           </div>
         </div>
