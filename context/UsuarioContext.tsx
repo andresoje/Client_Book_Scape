@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface Usuario {
-  id: number;
-  nombre: string;
+  username: string;
   email: string;
   password: string;
 }
@@ -21,7 +20,9 @@ const UsuarioContext = createContext<UsuarioContextType | undefined>(undefined);
 export const useUsuarioContext = () => {
   const context = useContext(UsuarioContext);
   if (!context) {
-    throw new Error("useUsuarioContext debe usarse dentro de un BookProvider");
+    throw new Error(
+      "useUsuarioContext debe usarse dentro de un UsuarioProvider"
+    );
   }
   return context;
 };
@@ -44,4 +45,3 @@ export function UsuarioProvider({ children }: UsuarioProviderProps) {
     </UsuarioContext.Provider>
   );
 }
-
