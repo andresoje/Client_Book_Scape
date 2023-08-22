@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useBookContext } from "@/context/BookContext";
-import styles from "./Detail.module.css";
+import styles from "./detail.module.css";
 import Rating from "../../components/Rating/Rating";
 import Link from "next/link";
 import { IoIosCart } from "react-icons/io";
