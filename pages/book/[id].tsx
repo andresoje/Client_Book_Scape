@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useBookContext } from "@/context/BookContext";
-import styles from "./detail.module.css";
+import styles from "./Detail.module.css";
 import Rating from "../../components/Rating/Rating";
 import Link from "next/link";
 import { IoIosCart } from "react-icons/io";
@@ -93,12 +93,12 @@ const DetallesBook = () => {
                   value="Agregar al carrito"
                   className={styles.button}
                 />
-                {/* <Link href={`/carritoDeCompra/`}>
-                  <button onClick={addToCartHandler} className={styles.button}>
+                <Link href={`/carritoDeCompra/`}>
+                  <button className={styles.button}>
                     <IoIosCart />
                     ir al carrito
                   </button>
-                </Link> */}
+                </Link>
               </form>
             </div>
           </div>
