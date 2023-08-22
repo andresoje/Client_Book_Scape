@@ -3,6 +3,7 @@ import styles from "../carritoDeCompra/carrito.module.css";
 import logo from "../../public/images/carrito.png";
 import React, { useEffect, useState } from "react";
 import { useCartContext } from "@/context/CartContext";
+import pago from "../../public/images/mercadopago.webp";
 
 const CarritoDeCompra = () => {
   const { cartItems, actualizarCantidad, eliminarProducto } = useCartContext();
@@ -10,17 +11,19 @@ const CarritoDeCompra = () => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const calculoTotal = cartItems.reduce((total, item) => total + (item.cantidad * item.price), 0);
+    const calculoTotal = cartItems.reduce(
+      (total, item) => total + item.cantidad * item.price,
+      0
+    );
     setTotal(calculoTotal);
-  }, [cartItems])
+  }, [cartItems]);
 
   return (
     <>
-      <div>
-        <h1>Carrito de Compra</h1>
+      <div >
+        <h1 className={styles.container3}>Carrito de Compra</h1> <br />
         <main>
-          <div className={styles.contenido}>
-            <div className={styles.carrito}>
+            <div className={styles.container}>
               <h2>Artículos</h2>
 
               {cartItems.length === 0 ? (
@@ -43,7 +46,7 @@ const CarritoDeCompra = () => {
                           <button className={styles.button} type="button">
                             Regístrate ahora
                           </button>
-                        </Link>{" "}
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -56,52 +59,71 @@ const CarritoDeCompra = () => {
                 </div>
               ) : (
                 cartItems.map((item) => (
-                  <div key={item.id}>
-                    <div>
-                      <img src={item.image} alt={item.title} />
-                    </div>
-                    <div>
-                      <h2>{item.title}</h2>
-                      <h3>{item.authors.join(", ")}</h3>
-                      <div>
-                        <h3>Cantidad:</h3>
-                        <select
-                          onChange={(e) =>
-                            actualizarCantidad({
-                              id: item.id,
-                              title: item.title,
-                              price: item.price,
-                              image: item.image,
-                              authors: item.authors,
-                              cantidad: parseInt(e.target.value),
-                            })
-                          }
-                          value={item.cantidad}
-                        >
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
+                  <div className={styles.containerCar}>
+                    <div className={styles.containerCar2} key={item.id}>
+                      <div className={styles.imagen}>
+                        <img src={item.image} alt={item.title} />
                       </div>
-                      <h3>
-                        $ <span>{item.price}</span>
-                      </h3>
-                      <h3>$ Subtotal: $ {(item.price * item.cantidad).toFixed(2)}</h3>
+                      <div>
+                        <h2>{item.title}</h2>
+                        <h3>{item.authors.join(", ")}</h3>
+                        <div>
+                          <h3>Cantidad:</h3>
+                          <select
+                            onChange={(e) =>
+                              actualizarCantidad({
+                                id: item.id,
+                                title: item.title,
+                                price: item.price,
+                                image: item.image,
+                                authors: item.authors,
+                                cantidad: parseInt(e.target.value),
+                              })
+                            }
+                            value={item.cantidad}
+                          >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </select>
+                        </div>
+                        <h3>
+                          $ <span>{item.price}</span>
+                        </h3>
+                        <h3>
+                          Valor: ${" "}
+                          {(item.price * item.cantidad).toFixed(2)}
+                        </h3>
+                      </div>
+                      <button
+                        className={styles.button}
+                        type="button"
+                        onClick={() => eliminarProducto(item.id)}
+                      >
+                        Eliminar
+                      </button>
                     </div>
-                     <button type="button" onClick={()=>eliminarProducto(item.id)}>Eliminar</button>
                   </div>
                 ))
               )}
             </div>
-            <aside className={styles.resumen}>
+              <aside className={styles.resumen}>
               <h3>Resumen del pedido</h3>
-              <p>Total a pagar: $ {total.toFixed(2)}</p>
+              <h2>Total a pagar: $ {total.toFixed(2)}</h2>
+              <Link href={"/"}>
+              <button className={styles.button} type="button">
+               Pagar
+                </button><br />
+                        </Link> 
+                        <br /> <img src={pago.src} alt="Logo" />
             </aside>
-          </div>
-        </main>
+    
+          </main>
+                       
       </div>
+   
     </>
   );
 };
