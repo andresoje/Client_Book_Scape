@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import styles from "./login.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import logo2 from "../../public/images/BookScapeLogo.png"
-
+import logo2 from "../../public/images/BookScapeLogo.png";
 
 // validaciones
 import useValidacion from "../../hooks/useValidacion";
 import validarIniciarSesion from "../../validacion/validarIniciarSesion";
 import axios from "axios";
 
-
-
-
 const STATE_INICIAL = {
-  email: "",
+  nombre: "",
   password: "",
 };
 
@@ -30,22 +26,34 @@ const login = () => {
       fn: IniciarSesion,
     });
 
-  const { email, password } = valores;
+  const { nombre, password } = valores;
 
   async function IniciarSesion() {
     try {
-      const response = await axios.post("/api/login", { email, password });
+      const nuevoUsuario = {
+        username: nombre,
+        password: password,
+      };
+      const response = await axios.post("http://localhost:3001/users/login", nuevoUsuario);
 
-      if (response.status === 200) {
-        const token = response.data.token; // Suponiendo que el backend devuelve un token
-        localStorage.setItem("token", token); // Almacena el token en el localStorage
-        console.log("Inicio de sesión exitoso");
+      console.log(response.data);
+      if (response.data.message === "Login succesfully!") {
         router.push("/");
+
       }
+
+      if(response.data === "User not found"){
+        guardarError("Usuario no encontrado")
+      }
+      
+      if(response.data === "Password does not match!"){
+        guardarError("Contraseña incorrecta")
+      }
+
     } catch (error: any) {
       console.error("Hubo un error al iniciar sesión ", error.response);
       guardarError(
-        "No pudimos encontrar una cuenta con esa dirección de correo electrónico, te invitamos a crear una cuenta"
+        "No pudimos encontrar una cuenta con ese Usuario o dirección de correo electrónico, o con esa contraseña, te invitamos a crear una cuenta"
       ); // Mostrar mensaje de error en el frontend
     }
   }
@@ -56,19 +64,19 @@ const login = () => {
       <h1>Iniciar sesión</h1>
       <form onSubmit={handleSubmit} noValidate>
         <div>
-          <label htmlFor="email">Correo electrónico</label>
+          <label htmlFor="nombre">Tu nombre</label>
           <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            name="email"
+            type="text"
+            id="nombre"
+            placeholder="Nombres y Apellidos"
+            name="nombre"
             className={styles.input}
-            value={email}
+            value={nombre}
             onChange={handleChange}
             onBlur={handleBlur}
           />
         </div>
-        {errores.email && <p className={styles.alert}>{errores.email}</p>}
+        {errores.nombre && <p className={styles.alert}>{errores.nombre}</p>}
         <div>
           <label htmlFor="password">Contraseña</label>
           <input
@@ -84,7 +92,7 @@ const login = () => {
         </div>
         {errores.password && <p className={styles.alert}>{errores.password}</p>}
 
-        {error && <p className={styles.alert}>{error} </p >}
+        {error && <p className={styles.alert}>{error} </p>}
 
         <button className={styles.button} type="submit">
           Iniciar sesión
@@ -92,9 +100,7 @@ const login = () => {
       </form>
       <div>¿Eres nuevo en BookScape?</div>
       <div>
-        <Link href="/crearCuenta">
-            Crea tu cuenta de BookScape
-        </Link>
+        <Link href="/crearCuenta">Crea tu cuenta de BookScape</Link>
       </div>
     </div>
   );
