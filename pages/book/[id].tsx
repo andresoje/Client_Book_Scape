@@ -14,24 +14,10 @@ const DetallesBook = () => {
     query: { id },
   } = useRouter();
 
-  const detallebook = books.find((book) => book.id === Number(id));
+  const detallebook = books.find((book) => book.id_book === Number(id));
 
   const { agregarCarrito, cartItems } = useCartContext();
 
-  // const addToCartHandler = () => {
-  //   if (detallebook) {
-  //     const cartItem = {
-  //       id: detallebook.id,
-  //       title: detallebook.title,
-  //       price: detallebook.price,
-  //       image: detallebook.image,
-  //       authors: detallebook.authors,
-  //       cantidad,
-  //     };
-
-  //     addToCart(cartItem);
-  //   }
-  // };
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
@@ -43,15 +29,13 @@ const DetallesBook = () => {
 
     if (detallebook) {
       const cartItem = {
-        id: detallebook.id,
+        id: detallebook.id_book,
         title: detallebook.title,
         price: detallebook.price,
         image: detallebook.image,
-        authors: detallebook.authors,
+        authors: detallebook.Authors.map(author => author.name),
         cantidad,
       };
-
-      console.log(cartItem);
 
       agregarCarrito(cartItem);
     }
@@ -76,7 +60,7 @@ const DetallesBook = () => {
             </div>
             <div className={styles.autor}>
               {" "}
-              <h3>{detallebook.authors}</h3>{" "}
+              <h3>{detallebook.Authors.map(author => author.name)}</h3>{" "}
             </div>
             <div className={styles.descripcion}>
               {" "}
@@ -88,7 +72,7 @@ const DetallesBook = () => {
                 {" "}
                 <h2>Precio: ${detallebook.price}</h2>{" "}
               </div>
-              <div>Genero: {detallebook.tags}</div>
+              <div>Genero: {detallebook.Tags.map(tag => tag.name)}</div>
               <form className={styles.formulario} onSubmit={handleSubmit}>
                 <label htmlFor="cantidad">Cantidad:</label>
 

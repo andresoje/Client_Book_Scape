@@ -3,33 +3,45 @@ import styles from "./CardBook.module.css";
 import Link from "next/link";
 import Rating from "../Rating/Rating";
 
+type Author = {
+  name: string;
+  // Agrega otras propiedades si es necesario
+};
+
+type Tags = {
+  name: string;
+  // Agrega otras propiedades si es necesario
+};
+
 type CardBookProps = {
-  id: number;
+  id_book: number;
   title: string;
-  authors: string[];
+  Authors: Author[];
   price: number;
-  tags: string[];
+  Tags: Tags[];
   image: string;
   rating_ave: number;
 };
 
 const CardBook: React.FC<CardBookProps> = ({
-  id,
+  id_book,
   title,
-  authors,
+  Authors,
   price,
   image,
   rating_ave,
 }) => {
   return (
     <div className={styles.imageContainer}>
-      <Link href={`/book/${id}`} className={styles.card}>
+      <Link href={`/book/${id_book}`} className={styles.card}>
         <div>
           <img src={image} alt={title} className={styles.image} />
           <Rating ratingCount={rating_ave} />
           <div className={styles.cardContent}>
             <h6 className={styles.title}>{title}</h6>
-            <h4 className={styles.cardAuthors}>{authors}</h4>
+            <h4 className={styles.cardAuthors}>{Authors.map((obj:any, index:any) => (
+    <div key={index}>{obj.name}</div>
+  ))}</h4>
             <h3 className={styles.cardPrice}>${price}</h3>
           </div>
         </div>{" "}

@@ -5,7 +5,6 @@ import styles from "../styles/Home.module.css";
 import { useBookContext } from "@/context/BookContext";
 import autor from "../public/images/autor.png";
 import Pagination from "@/components/Pagination/Pagination";
-import Filters from "@components/Filters/Filters"
  
 
 function Home() {
@@ -34,7 +33,7 @@ function Home() {
       <div className={styles.descriptionDer}>
         <div>
           <h3 className={styles.h1}>Bienvenidos</h3>
-          <Filters />
+    
           <CardsBooks books={currentBooks} />
           <Pagination
             currentPage={currentPage}
