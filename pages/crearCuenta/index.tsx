@@ -1,32 +1,12 @@
 import React, { useState } from "react";
 import styles from "./crearcuenta.module.css";
 import { useUsuarioContext } from "@/context/UsuarioContext";
-
-// validaciones
 import useValidacion from "../../hooks/useValidacion";
 import validarCrearCuenta from "../../validacion/validarCrearCuenta";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
-import logo2 from "../../public/images/BookScapeLogo.png"
-
-
-interface ValidacionErrors {
-  [key: string]: string;
-}
-
-interface UseValidacionProps<T> {
-  stateInicial: T;
-  validar: (valores: T) => ValidacionErrors;
-  fn: () => void;
-}
-
-interface Usuario {
-  id: number
-  nombre: string;
-  email: string;
-  password: string;
-}
+import logo2 from "../../public/images/BookScapeLogo.png";
 
 const STATE_INICIAL = {
   nombre: "",
@@ -36,41 +16,39 @@ const STATE_INICIAL = {
 };
 
 const Crearcuenta = () => {
-
-  const { agregarUsuario } = useUsuarioContext();
-
   const router = useRouter();
-  const [error, guardarError] = useState(false);
+  const [error, guardarError] = useState<string | null>(null);
 
-  const { valores, errores, handleSubmit, handleChange, handleBlur } =
-    useValidacion({
-      stateInicial: STATE_INICIAL,
-      validar: validarCrearCuenta,
-      fn: crearCuenta,
-    });
+  const {
+    valores,
+    errores,
+    handleSubmit,
+    handleChange,
+    handleBlur,
+  } = useValidacion({
+    stateInicial: STATE_INICIAL,
+    validar: validarCrearCuenta,
+    fn: crearCuenta,
+  });
 
   const { nombre, email, password, passwordRepetida } = valores;
-  
-  const usuarios: Usuario = {
-    id:0,
-    nombre: nombre,
-    email: email,
-    password: password,
-  }
 
   async function crearCuenta() {
     try {
-      await axios.post("/api/users/registro", valores);
-      agregarUsuario(usuarios);
+      const nuevoUsuario = {
+        username: nombre,
+        email: email,
+        password: password,
+      };
+
+      await axios.post("http://localhost:3001/users", nuevoUsuario);
 
       router.push("/login");
-
     } catch (error: any) {
-      console.error('Hubo un error al crear el usuario ',error);
-      guardarError(error);
+      console.error("Hubo un error al crear el usuario", error);
+      guardarError("Hubo un error al crear el usuario");
     }
   }
-
   return (
     <div className={styles.container}>
           <img className={styles.logo2} src={logo2.src} alt="" />
