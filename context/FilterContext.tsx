@@ -4,11 +4,12 @@ import axios from "axios";
 interface FilterState {
   price: number;
   language: string;
-  category: string;
+  selectedAuthors: string[];
   selectedTags: string[];
+  rating_ave: number;
 }
 
-type Author = {
+type Authors = {
   name: string;
 };
 
@@ -23,7 +24,7 @@ type Language = {
 type Book = {
   id_book: number;
   title: string;
-  Authors: Author[];
+  Authors: Authors[];
   published_date: number;
   price: number;
   description: string;
@@ -38,6 +39,7 @@ type Book = {
 type FilterContextType = {
   uniqueLanguages: string[];
   uniqueTags: string[];
+  uniqueAuthors: string[];
   filters: FilterState;
   setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
   applyFilters: () => Promise<void>;
@@ -86,16 +88,19 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
   const [filters, setFilters] = useState<FilterState>({
     price: 50,
     language: "",
-    category: "",
+    selectedAuthors: [],
     selectedTags: [],
+    rating_ave: 0,
   });
 
   const [uniqueLanguages, setUniqueLanguages] = useState<string[]>([]);
   const [uniqueTags, setUniqueTags] = useState<string[]>([]);
+  const [uniqueAuthors, setUniqueAuthors] = useState<string[]>([]);
 
   useEffect(() => {
     fetchLanguages();
     fetchTags();
+    fetchAuthors(); 
   }, []);
 
 
@@ -119,6 +124,16 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
     }
   };
 
+  const fetchAuthors = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/books/authors");
+      const authors = response.data.map((author: Authors) => author.name);
+      setUniqueAuthors(authors);
+    } catch (error) {
+      console.error("Error fetching authors:", error);
+    }
+  };
+
   
   // const [filteredBooks, setFilteredBooks] = useState(books);
 
@@ -129,6 +144,8 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
           tags: filters.selectedTags.join(","),
           language: filters.language,
           price: filters.price,
+          authors:filters.selectedAuthors.join(","),
+          rating_ave: filters.rating_ave,
         },
       });
       const booksWithRandomRating = response.data.map((book: Book) => ({
@@ -147,6 +164,7 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
   const contextValue: FilterContextType = {
     uniqueLanguages,
     uniqueTags,
+    uniqueAuthors,
     filters,
     setFilters,
     applyFilters,
