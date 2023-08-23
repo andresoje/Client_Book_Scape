@@ -31,7 +31,7 @@ const Navbar = () => {
             
             </Link>
           )}
-            <Link href="/login" className={styles.Text}>Hola, Identifícate<IoMdPerson /></Link>
+            <Link href="/login" className={styles.Text}>Identifícate<IoMdPerson /></Link>
 
         </div>
       </div>

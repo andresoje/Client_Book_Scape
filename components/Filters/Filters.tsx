@@ -63,12 +63,12 @@ const Filtros: React.FC = () => {
       <br />
       <br />
       {/* Filtros por tags */}
-      <label style={{ fontWeight: "bold" }}>Tags</label>
+      <label  style={{ fontWeight: "bold" }}>Tags</label>
       {showAllTags ? (
         uniqueTags.map((tag) => (
           <div key={tag}>
-            <label>
-              <input
+            <label >
+              <input 
                 type="checkbox"
                 value={tag}
                 checked={filters.selectedTags.includes(tag)}
@@ -95,7 +95,7 @@ const Filtros: React.FC = () => {
         ))
       ) : (
         <>
-          {uniqueTags.slice(0, 5).map((tag) => (
+          {uniqueTags.slice(0, 5).sort().map((tag) => (
             <div key={tag}>
               <label>
                 <input

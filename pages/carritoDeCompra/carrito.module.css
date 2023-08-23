@@ -116,11 +116,11 @@ img{
 
    .resumen {   
     background: linear-gradient(180deg, #ffffff 26.71%, #ebebeb 50%);
-    padding: 3rem;
+    padding: 1rem;
     border-radius: 1rem;
     border: 1px solid #ccc;
     position: fixed;
-    top: 8em;
+    top: 6em;
     right: 0;
     width: 10em;
     height: 20em;
@@ -131,7 +131,7 @@ img{
 
   }
     .resumen img{
-      width: 12rem;
+      width: 8rem;
     }
 
     
