@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Filters.module.css";
-import CardBook from "../CardBook/CardBook";
 import { useFilterContext } from "@/context/FilterContext";
-import axios from "axios";
+import Link from "next/link";
 
 interface Author {
   name: string;
@@ -12,56 +11,25 @@ interface Tags {
   name: string;
 }
 
-interface Book {
-  id_book: number;
-  title: string;
-  Authors: Author[];
-  price: number;
-  Tags: Tags[];
-  image: string;
-  rating_ave: number;
-}
-
-interface FilterState {
-  price: number;
-  language: string;
-  category: string;
-  selectedTags: string[];
-}
-
 const Filtros: React.FC = () => {
-  const { books, uniqueLanguages, uniqueTags } = useFilterContext();
+  const { filters, setFilters, uniqueLanguages, uniqueTags, applyFilters } =
+    useFilterContext();
 
-  const [filters, setFilters] = useState<FilterState>({
-    price: 0,
-    language: "",
-    category: "",
-    selectedTags: [],
-  });
+  const [showAllTags, setShowAllTags] = useState(false);
 
-  const [filteredBooks, setFilteredBooks] = useState<Book[]>(books);
+  const toggleShowAllTags = () => {
+    setShowAllTags(!showAllTags);
+  };
 
-  const applyFilters = async () => {
-    try {
-      const response = await axios.get("http://localhost:3001/books/filter", {
-        params: {
-          tags: filters.selectedTags.join(","),
-          language: filters.language,
-          price: filters.price,
-        },
-      });
-      setFilteredBooks(response.data);
-    } catch (error) {
-      console.error("Error applying filters:", error);
-    }
+  const toggleShowLessTags = () => {
+    setShowAllTags(false);
   };
 
   return (
     <div className={styles.container}>
       {/* Filtros por precio */}
-      <label>Precio</label>
-      <br />
-      0{" "}
+      <label style={{ fontWeight: "bold" }}>Precio</label>
+      <br />0{" "}
       <input
         value={filters.price}
         type="range"
@@ -75,8 +43,9 @@ const Filtros: React.FC = () => {
       />
       <span>{filters.price}</span>
       <br />
-
+      <br />
       {/* Filtros por idioma */}
+      <label style={{ fontWeight: "bold" }}>Idioma</label>
       <select
         className={styles.input}
         value={filters.language}
@@ -91,55 +60,86 @@ const Filtros: React.FC = () => {
           </option>
         ))}
       </select>
-
-        <br/>
+      <br />
+      <br />
       {/* Filtros por tags */}
-      {uniqueTags.map((tag) => (
-        <label key={tag}>
-          <input
-            type="checkbox"
-            value={tag}
-            checked={filters.selectedTags.includes(tag)}
-            onChange={(e) => {
-              if (e.target.checked) {
-                setFilters({
-                  ...filters,
-                  selectedTags: [...filters.selectedTags, tag],
-                });
-              } else {
-                setFilters({
-                  ...filters,
-                  selectedTags: filters.selectedTags.filter(
-                    (selectedTag) => selectedTag !== tag
-                  ),
-                });
-              }
-            }}
-          />
-          {tag}
-        </label>
-      ))}
-
+      <label style={{ fontWeight: "bold" }}>Tags</label>
+      {showAllTags ? (
+        uniqueTags.map((tag) => (
+          <div key={tag}>
+            <label>
+              <input
+                type="checkbox"
+                value={tag}
+                checked={filters.selectedTags.includes(tag)}
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setFilters({
+                      ...filters,
+                      selectedTags: [...filters.selectedTags, tag],
+                    });
+                  } else {
+                    setFilters({
+                      ...filters,
+                      selectedTags: filters.selectedTags.filter(
+                        (selectedTag) => selectedTag !== tag
+                      ),
+                    });
+                  }
+                }}
+              />
+              {tag}
+            </label>
+            <br />
+          </div>
+        ))
+      ) : (
+        <>
+          {uniqueTags.slice(0, 5).map((tag) => (
+            <div key={tag}>
+              <label>
+                <input
+                  type="checkbox"
+                  value={tag}
+                  checked={filters.selectedTags.includes(tag)}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setFilters({
+                        ...filters,
+                        selectedTags: [...filters.selectedTags, tag],
+                      });
+                    } else {
+                      setFilters({
+                        ...filters,
+                        selectedTags: filters.selectedTags.filter(
+                          (selectedTag) => selectedTag !== tag
+                        ),
+                      });
+                    }
+                  }}
+                />
+                {tag}
+              </label>
+              <br />
+            </div>
+          ))}
+          <button onClick={toggleShowAllTags}>Ver más</button>
+          <br />
+        </>
+      )}
+      {showAllTags && (
+        <>
+          <button onClick={toggleShowLessTags}>Ver menos</button>
+          <br />
+        </>
+      )}
       {/* Botón de aplicar filtros */}
-      <button className={styles.button} onClick={applyFilters}>
-        Aplicar Filtros
-      </button>
-
-      {/* Lista de libros filtrados */}
-      <div className={styles.container}>
-        {filteredBooks.map((book, index) => (
-          <CardBook
-            key={index}
-            id_book={book.id_book}
-            title={book.title}
-            Authors={book.Authors}
-            price={book.price}
-            Tags={book.Tags}
-            image={book.image}
-            rating_ave={book.rating_ave}
-          />
-        ))}
-      </div>
+      <br />
+      <Link href="/filtrar">
+        <button className={styles.button} onClick={applyFilters}>
+          Aplicar Filtros
+        </button>
+      </Link>
     </div>
   );
 };

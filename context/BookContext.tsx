@@ -28,6 +28,7 @@ type Book = {
 // Definición del tipo de objeto para el contexto "BookContextType"
 type BookContextType = {
   books: Book[];
+  setBooks: React.Dispatch<React.SetStateAction<Book[]>>; 
 };
 
 type BookProviderProps = {
@@ -74,6 +75,7 @@ export const BookProvider: React.FC<BookProviderProps> = ({ children }) => {
   // Creación del objeto "contextValue" con la información del contexto
   const contextValue: BookContextType = {
     books,
+    setBooks,
   };
 
   // Retorna el componente "BookContext.Provider" que envuelve a los componentes hijos
