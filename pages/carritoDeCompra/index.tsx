@@ -112,8 +112,8 @@ const CarritoDeCompra = () => {
               <aside className={styles.resumen}>
               <h3>Resumen del pedido</h3>
               <h2>Total a pagar: $ {total.toFixed(2)}</h2>
-              <Link href={"/"}>
-              <button className={styles.button} type="button">
+              <Link href={"http://mpago.li/2NZfEab"}>
+              <button data-preference-id="97116827-f207eb10-4eb8-4fc2-b6b4-2836e6ad3aa8"  className={styles.button} type="button">
                Pagar
                 </button><br />
                         </Link> 
