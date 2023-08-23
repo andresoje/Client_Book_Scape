@@ -2,19 +2,19 @@ import React from "react";
 import styles from "./Rating.module.css";
 
 type RatingProps = {
-  ratingCount: number; // Valor original del ratingCount de la base de datos
+  rating_ave: number; // Valor original del rating_ave de la base de datos
 };
 
-const Rating: React.FC<RatingProps> = ({ ratingCount }) => {
+const Rating: React.FC<RatingProps> = ({ rating_ave }) => {
   const maxStars = 5;
-  const scaledRating = ratingCount / 2; // Escala de 1-10 a 1-5
+  const roundedRating = Math.round(rating_ave); // Redondear el rating_ave al número entero más cercano
 
   return (
     <div className={styles.rating}>
       {Array.from({ length: maxStars }).map((_, index) => (
         <span
           key={index}
-          className={index < scaledRating ? styles.starFilled : styles.star}
+          className={index < roundedRating ? styles.starFilled : styles.star}
         >
           ★
         </span>

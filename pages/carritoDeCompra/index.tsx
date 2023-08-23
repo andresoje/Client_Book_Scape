@@ -58,9 +58,9 @@ const CarritoDeCompra = () => {
                   </p>
                 </div>
               ) : (
-                cartItems.map((item) => (
-                  <div className={styles.containerCar}>
-                    <div className={styles.containerCar2} key={item.id}>
+                cartItems.map((item, index) => (
+                  <div className={styles.containerCar} key={index}>
+                    <div className={styles.containerCar2}>
                       <div className={styles.imagen}>
                         <img src={item.image} alt={item.title} />
                       </div>

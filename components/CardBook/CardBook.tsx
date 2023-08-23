@@ -36,7 +36,7 @@ const CardBook: React.FC<CardBookProps> = ({
       <Link href={`/book/${id_book}`} className={styles.card}>
         <div>
           <img src={image} alt={title} className={styles.image} />
-          <Rating ratingCount={rating_ave} />
+          <Rating rating_ave={rating_ave} />
           <div className={styles.cardContent}>
             <h6 className={styles.title}>{title}</h6>
             <h4 className={styles.cardAuthors}>{Authors.map((obj:any, index:any) => (
