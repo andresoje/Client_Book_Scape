@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import { useBookContext } from "@/context/BookContext";
 import autor from "../public/images/autor.png";
 import Pagination from "@/components/Pagination/Pagination";
+import Filtros from "@/components/Filters/Filters";
  
 
 function Home() {
@@ -25,10 +26,7 @@ function Home() {
     <div className={styles.description}>
       <div className={styles.descriptionIzq}>
         <h3>Consulta por categorias</h3>
-        <p>Historia</p>
-        <p>Poesia</p>
-        <p>Ficción</p>
-        <p>Novelas</p>
+       <Filtros/>       
       </div>
       <div className={styles.descriptionDer}>
         <div>
