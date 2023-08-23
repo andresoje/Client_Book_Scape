@@ -35,48 +35,19 @@ const Filtros: React.FC = () => {
   const [uniqueLanguages, setUniqueLanguages] = useState<string[]>([]);
   const [uniqueTags, setUniqueTags] = useState<string[]>([]);
   const [filteredbooks, setFilteredbooks] = useState<Book[]>([]);
-
-  // useEffect(() => {
-  //   // Obtener las opciones únicas para los filtros
-  //   const languages = Array.from(new Set(books.map(Book => Book.language.toLowerCase())));
-  //   const Tags = Array.from(new Set(books.flatMap(Book => Book.Tags)));
-
-  //   setUniqueLanguages(languages);
-  //   setUniqueTags(Tags);
-  // }, []);
-
-  // useEffect(() => {
-  //   // Filtrar Bookos basados en los filtros seleccionados
-  //   const filtered = books.filter(Book => {
-  //     const priceFilter = filters.price === 0 || (filters.price === 999 ? Book.price > 50 : Book.price <= filters.price);
-  //     const languageFilter = filters.language === '' || Book.language.toLowerCase() === filters.language.toLowerCase();
-  //     const categoryFilter = filters.category === '' || Book.Tags.includes(filters.category);
-      
-  //     return priceFilter && languageFilter && categoryFilter;
-  //   });
-
-  //    setFilteredbooks(filtered);
-  // }, [filters]);
-
   return (
-    <div className= {styles.filtros} >
-     
-      {/* Filtros por precio */}
-      <select
-        value={filters.price} id='filters.price' name='filters.price'
-        onChange={(e) => setFilters({ ...filters, price: Number(e.target.value) })}
-      >
-        <option value={0}>Cualquier Precio</option>
-        <option value={10}>$1 - $10</option>
-        <option value={20}>$11 - $20</option>
-        <option value={50}>$21 - $30</option>
-        <option value={50}>$31 - $40</option>
-        <option value={50}>$41 - $50</option>
-        <option value={999}>Más de $51</option>
-      </select>
+    <div className= {styles.container} >
+     <div >
+   {/* Filtros por precio */}
+  <label>Precio</label><br />
+  0 <input  value={filters.price} type="range" id="filters.price" name="filters.price" min="0" max="50" 
+  onChange={(e) => setFilters({ ...filters, price: Number(e.target.value) })} />50
+</div> <br />
+
+    
 
       {/* Filtros por idioma */}
-      <select
+      <select className= {styles.input}
         value={filters.language} id='filters.language' name='filters.language'
         onChange={(e) => setFilters({ ...filters, language: e.target.value })}
       >
@@ -87,7 +58,7 @@ const Filtros: React.FC = () => {
       </select>
 
       {/* Filtros por género */}
-      <select
+      <select className= {styles.input}
         value={filters.category} id='filters.category' name='filters.category'
         onChange={(e) => setFilters({ ...filters, category: e.target.value })}
       >
@@ -98,7 +69,7 @@ const Filtros: React.FC = () => {
       </select>
 
       {/* Botón de aplicar filtros */}
-      <button onClick={() => setFilteredbooks(filteredbooks)}>Aplicar Filtros</button>
+      <button className= {styles.button} onClick={() => setFilteredbooks(filteredbooks)}>Aplicar Filtros</button>
       
       {/* Lista de Bookos filtrados */}
       <div className={styles.container} >
