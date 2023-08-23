@@ -13,6 +13,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
 
   return (
     <div className={styles.container__pagination}>
+      {currentPage > 1 && (
       <button
         className={styles.button__pagination}
         disabled={currentPage === 1}
@@ -20,7 +21,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       >
         &lt; {/* Flecha hacia la izquierda */}
       </button>
-
+      )}
       {pages.map((page) => (
         <button
           className={`${styles.button__pagination} ${
@@ -32,6 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
           {page}
         </button>
       ))}
+       {currentPage < totalPages && (
 
       <button
         className={styles.button__pagination}
@@ -40,6 +42,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       >
         &gt; {/* Flecha hacia la derecha */}
       </button>
+       )}
     </div>
   );
 };
