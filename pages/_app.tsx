@@ -9,7 +9,7 @@ import { UsuarioProvider } from "@/context/UsuarioContext";
 import { useEffect } from "react";
 import axios from "axios";
 import { CartProvider } from "@/context/CartContext";
-
+import { FilterProvider } from "@/context/FilterContext";
 /**
  * Componente raíz de la aplicación.
  * Envuelve cada página con el componente Layout para proporcionar una estructura común.
@@ -30,10 +30,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     <BookProvider>
       <UsuarioProvider>
       <CartProvider>
+        <FilterProvider>
         <Layout>
           {/* El componente Layout envuelve cada página */}
           <Component {...pageProps} />
         </Layout>
+        </FilterProvider>
         </CartProvider>
       </UsuarioProvider>
     </BookProvider>
