@@ -90,7 +90,7 @@ const DetallesBook = () => {
                   <div><Link href={`/`}>
                     <button className={styles.button}>
                       <IoIosCart />
-                      Seguir Comprando
+                      Regresar
                     </button>
                   </Link></div>
                 

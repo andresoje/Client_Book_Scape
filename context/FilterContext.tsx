@@ -57,7 +57,7 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/filter/");
+      const response = await axios.get("http://localhost:3001/books/filter/");
       const booksWithRandomRating = response.data.map((book: Book) => ({
         ...book,
         rating_ave:
