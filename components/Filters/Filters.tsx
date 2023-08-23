@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useFilterContext } from '@/context/FilterContext';
 import styles from "./Filters.module.css"
-
+import CardBook from '../CardBook/CardBook';
 interface Book {
   id: number;
   title: string;
@@ -25,7 +25,7 @@ interface FilterState {
 }
 
 const Filtros: React.FC = () => {
-  const { books } = useFilterContext();
+ // const { books } = useFilterContext();
   const [filters, setFilters] = useState<FilterState>({
     price: 0,
     language: '',
@@ -36,27 +36,27 @@ const Filtros: React.FC = () => {
   const [uniqueTags, setUniqueTags] = useState<string[]>([]);
   const [filteredbooks, setFilteredbooks] = useState<Book[]>([]);
 
-  useEffect(() => {
-    // Obtener las opciones únicas para los filtros
-    const languages = Array.from(new Set(books.map(Book => Book.language.toLowerCase())));
-    const Tags = Array.from(new Set(books.flatMap(Book => Book.Tags)));
+  // useEffect(() => {
+  //   // Obtener las opciones únicas para los filtros
+  //   const languages = Array.from(new Set(books.map(Book => Book.language.toLowerCase())));
+  //   const Tags = Array.from(new Set(books.flatMap(Book => Book.Tags)));
 
-    setUniqueLanguages(languages);
-    setUniqueTags(Tags);
-  }, []);
+  //   setUniqueLanguages(languages);
+  //   setUniqueTags(Tags);
+  // }, []);
 
-  useEffect(() => {
-    // Filtrar Bookos basados en los filtros seleccionados
-    const filtered = books.filter(Book => {
-      const priceFilter = filters.price === 0 || (filters.price === 999 ? Book.price > 50 : Book.price <= filters.price);
-      const languageFilter = filters.language === '' || Book.language.toLowerCase() === filters.language.toLowerCase();
-      const categoryFilter = filters.category === '' || Book.Tags.includes(filters.category);
+  // useEffect(() => {
+  //   // Filtrar Bookos basados en los filtros seleccionados
+  //   const filtered = books.filter(Book => {
+  //     const priceFilter = filters.price === 0 || (filters.price === 999 ? Book.price > 50 : Book.price <= filters.price);
+  //     const languageFilter = filters.language === '' || Book.language.toLowerCase() === filters.language.toLowerCase();
+  //     const categoryFilter = filters.category === '' || Book.Tags.includes(filters.category);
       
-      return priceFilter && languageFilter && categoryFilter;
-    });
+  //     return priceFilter && languageFilter && categoryFilter;
+  //   });
 
-     setFilteredbooks(filtered);
-  }, [filters]);
+  //    setFilteredbooks(filtered);
+  // }, [filters]);
 
   return (
     <div className= {styles.filtros} >
