@@ -82,14 +82,13 @@ const DetallesBook = () => {
                     <option value="4">4</option>
                     <option value="5">5</option>
                   </select></div>
-                  <div><input
+                  <div><input 
                     type="submit"
-                    value="Agregar al carrito"
+                    value="Agregar al carrito "
                     className={styles.button}
                   /></div>
-                  <div><Link href={`/`}>
+                  <div><Link href={`/`} >
                     <button className={styles.button}>
-                      <IoIosCart />
                       Regresar
                     </button>
                   </Link></div>

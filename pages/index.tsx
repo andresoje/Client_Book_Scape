@@ -25,7 +25,7 @@ function Home() {
   return (
     <div className={styles.description}>
       <div className={styles.descriptionIzq}>
-        <h3>Consulta por categorias</h3>
+        <h5>Consulta por categorias</h5>
        <Filtros/>       
       </div>
       <div className={styles.descriptionDer}>
