@@ -1,6 +1,25 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
+interface FilterState {
+  price: number;
+  language: string;
+  category: string;
+  selectedTags: string[];
+}
+
+type Author = {
+  name: string;
+};
+
+type Tags = {
+  name: string;
+};
+
+type Language = {
+  language: string;
+};
+
 type Book = {
   id_book: number;
   title: string;
@@ -15,27 +34,20 @@ type Book = {
   Language: string;
 };
 
-type Author = {
-  name: string;
-};
-
-type Tags = {
-  name: string;
-};
-
-type Language = {
-  language: string;
-};
 
 type FilterContextType = {
-  books: Book[];
   uniqueLanguages: string[];
   uniqueTags: string[];
+  filters: FilterState;
+  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
+  applyFilters: () => Promise<void>;
+  booksFilters: Book[];
 };
 
 type FilterProviderProps = {
   children: React.ReactNode;
 };
+
 
 const FilterContext = createContext<FilterContextType | undefined>(undefined);
 
@@ -48,24 +60,44 @@ export const useFilterContext = () => {
 };
 
 export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
-  const [books, setBooks] = useState<Book[]>([]);
-  const [uniqueLanguages, setUniqueLanguages] = useState<string[]>([]);
-  const [uniqueTags, setUniqueTags] = useState<string[]>([]);
+
+  const [booksFilters, setBooksFilters] = useState<Book[]>([]);
 
   useEffect(() => {
     fetchBooks();
-    fetchLanguages();
-    fetchTags();
   }, []);
 
   const fetchBooks = async () => {
     try {
       const response = await axios.get("http://localhost:3001/books/");
-      setBooks(response.data);
+      const booksWithRandomRating = response.data.map((book: Book) => ({
+        ...book,
+        rating_ave:
+          book.rating_ave !== null ? book.rating_ave : (Math.random() * 3 + 4).toFixed(1),
+          page_count:
+          book.page_count !== null ? book.page_count : (Math.random() * 200).toFixed(0),
+      }));
+      setBooksFilters(booksWithRandomRating);
     } catch (error) {
       console.error("Error fetching books:", error);
     }
   };
+
+  const [filters, setFilters] = useState<FilterState>({
+    price: 50,
+    language: "",
+    category: "",
+    selectedTags: [],
+  });
+
+  const [uniqueLanguages, setUniqueLanguages] = useState<string[]>([]);
+  const [uniqueTags, setUniqueTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    fetchLanguages();
+    fetchTags();
+  }, []);
+
 
   const fetchLanguages = async () => {
     try {
@@ -87,10 +119,38 @@ export const FilterProvider: React.FC<FilterProviderProps> = ({ children }) => {
     }
   };
 
+  
+  // const [filteredBooks, setFilteredBooks] = useState(books);
+
+  const applyFilters = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/books/filter", {
+        params: {
+          tags: filters.selectedTags.join(","),
+          language: filters.language,
+          price: filters.price,
+        },
+      });
+      const booksWithRandomRating = response.data.map((book: Book) => ({
+        ...book,
+        rating_ave:
+          book.rating_ave !== null ? book.rating_ave : (Math.random() * 3 + 4).toFixed(1),
+          page_count:
+          book.page_count !== null ? book.page_count : (Math.random() * 200).toFixed(0),
+      }));
+      setBooksFilters(booksWithRandomRating);
+    } catch (error) {
+      console.error("Error applying filters:", error);
+    }
+  };
+
   const contextValue: FilterContextType = {
-    books,
     uniqueLanguages,
     uniqueTags,
+    filters,
+    setFilters,
+    applyFilters,
+    booksFilters,
   };
 
   return (
