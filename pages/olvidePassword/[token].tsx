@@ -1,9 +1,9 @@
 import React from 'react'
 
-const OlvidePassword = () => {
+const OlvidePasswordToken = () => {
   return (
     <div>index</div>
   )
 }
 
-export default OlvidePassword;
+export default OlvidePasswordToken;
