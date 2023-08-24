@@ -1,5 +1,5 @@
 // Marketplace.tsx
-import React, { useState, useEffect } from 'react';
+/*import React, { useState, useEffect } from 'react';
 import products from './data'; // Importa la matriz de productos desde el archivo data.ts
 import Card from './Card'; // Importa tu componente Card
 import Pagination from './pagination'; // Importa el componente Pagination
@@ -82,7 +82,7 @@ const Marketplace: React.FC = () => {
       {/* ... (código del botón) */}
       
       {/* Lista de productos filtrados */}
-      <div className={styles.productsContainer}>
+     /* <div className={styles.productsContainer}>
         {currentProducts.map(product => (
           <Card
             key={product.id}
@@ -97,7 +97,7 @@ const Marketplace: React.FC = () => {
       </div>
 
       {/* Paginación */}
-      <Pagination
+     /* <Pagination
         currentPage={currentPage}
         totalPages={Math.ceil(filteredProducts.length / productsPerPage)}
         onPageChange={handlePageChange}
